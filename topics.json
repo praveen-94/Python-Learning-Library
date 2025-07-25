@@ -1,0 +1,242 @@
+[  
+  { "title": "Introduction to Python",
+    "description": "A beginner's guide to Python programming.",
+    "tags": ["python", "introduction", "basics"],
+    "subtopics": [
+      { "title": "Input, Output, Print function and Data Types",
+        "description": "Understanding Python syntax and basic data types.",
+        "tags": ["syntax", "data types", "variables", "input", "output", "print"],
+        "module": "topics.Basic_Structure.in_out_dataTypes"
+      },
+      { "title": "Variable and Its Scope",
+        "description": "Exploring variable declaration, assignment, and scope in Python.",
+        "tags": ["variables", "scope", "global", "local", "nonlocal", "lifetime"],
+        "module": "topics.Basic_Structure.variable_and_scope"
+      },
+      { "title": "Operators and Their Use",
+        "description": "Understanding different types of operators in Python and how they are used in expressions.",
+        "tags": ["operators", "arithmetic", "comparison", "logical", "bitwise", "assignment", "membership", "identity"],
+        "module": "topics.Basic_Structure.operators_usage"
+      },
+      { "title": "Control statements",
+        "description": "Understanding Python control statements",
+        "tags": ["if", "if-else", "if-elif-else", "match", "for", "while"],
+        "module": "topics.Basic_Structure.control_statements"
+      }
+    ]
+  },
+  { "title": "Data Structures",
+    "description": "An overview of Python's built-in data structures.",
+    "tags": ["data structures", "string", "lists", "tuples", "dictionaries", "sets"],
+    "subtopics": [
+        { "title": "Strings",
+          "description": "Covers all built-in string methods with examples.",
+          "tags": ["string", "methods", "text processing"],
+          "subtopics": [
+            { "title": "Basic String Concepts",
+              "description": "Detailed explanation of strings functionality.",
+              "tags": ["string", "methods", "text processing"],
+              "module": "topics.Collection.strings.basic_string_concepts"
+            },
+            { "title": "Case Conversion and Character Testing (Boolean Checks) Methods",
+              "description": "Methods for case conversion and character checks.",
+              "tags": ["case conversion", "isalpha", "isdigit", "islower", "isupper"],
+              "module": "topics.Collection.strings.case_conversion_n_check"
+            },
+            { "title": "Trimming and Padding Methods",
+              "description": "Methods for trimming and padding strings.",
+              "tags": ["trimming", "padding", "strip", "lstrip", "rstrip"],
+              "module": "topics.Collection.strings.trimming_and_padding"
+            },
+            { "title": "Searching and Replacing Methods",
+              "description": "Methods for searching and replacing substrings.",
+              "tags": ["find", "replace", "count"],
+              "module": "topics.Collection.strings.searching_indexing_n_replacing"
+            },
+            { "title": "Splitting and Joining Methods",
+              "description": "Methods for splitting and joining strings.",
+              "tags": ["split", "join"],
+              "module": "topics.Collection.strings.splitting_and_joining"
+            },
+            { "title": "Other Miscellaneous Methods",
+              "description": "Methods for formatting, translating, encoding etc strings.",
+              "tags": ["encode()", "maketrans()", "translate()", "format()", "format_map()", "expandtabs()" ],
+              "module": "topics.Collection.strings.Miscellaneous"
+            }
+          ]
+        },
+        { "title": "Lists",
+          "description": "Understanding lists, their methods, and operations.",
+          "tags": ["list", "append", "remove", "sort"],
+           "subtopics": [
+            { "title": "List Basics (No Methods)",
+              "description": "Introduction to Python lists, including creation, indexing, slicing, and basic operations without using methods.",
+              "tags": ["lists", "indexing", "slicing", "iteration", "mutable", "sequence"],
+              "module": "topics.Collection.list.list_basics"
+            },
+            { "title": "List Methods",
+              "description": "Exploring built-in methods available for Python lists to manipulate and process data.",
+              "tags": ["lists", "methods", "append", "extend", "insert", "remove", "pop", "sort", "reverse"],
+              "module": "topics.Collection.list.list_methods"
+            }
+          ]
+        },
+        { "title": "Tuples",
+          "description": "Immutable sequences in Python.",
+          "tags": ["tuple", "immutable"],
+          "subtopics": [
+           { "title": "Tuple Basics",
+             "description": "Introduction to Python tuples, including creation, indexing, slicing, and immutability.",
+             "tags": ["tuples", "immutable", "indexing", "slicing", "sequence"],
+             "module": "topics.Collection.tuple.tuple_basics"
+          },
+          { "title": "Tuple Methods",
+            "description": "Exploring built-in methods available for Python tuples and how they differ from lists.",
+            "tags": ["tuples", "methods", "count", "index", "immutable", "sequence"],
+            "module": "topics.Collection.tuple.tuple_methods"
+          }
+          ]
+        },
+        { "title": "Dictionaries",
+          "description": "Key-value pairs and dictionary methods.",
+          "tags": ["dictionary", "dict", "key-value"],
+          "module": "topics.Collection.dictionary.dictionary_basics"
+        },
+        { "title": "Sets",
+          "description": "Unordered collections of unique elements.",
+          "tags": ["set", "unique", "operations"],
+          "subtopics": [
+          { "title": "Set Basics",
+            "description": "Introduction to Python sets, including creation, uniqueness of elements, and fundamental properties.",
+            "tags": ["sets", "unique", "unordered", "mutable", "creation", "membership"],
+            "module": "topics.Collection.set.set_basics"
+          },
+          { "title": "Set Theory Based Methods",
+            "description": "Exploring set operations in Python inspired by mathematical set theory, such as union, intersection, and difference.",
+            "tags": ["sets", "union", "intersection", "difference", "symmetric_difference", "issubset", "issuperset", "isdisjoint"],
+            "module": "topics.Collection.set.set_theory_methods"
+          }
+         ]
+        },
+        { "title": "Common Inbuilt Methods for Iterables",
+          "description": "Understanding commonly used functions for working with iterable objects in Python.",
+          "tags": ["iterables", "len", "sum", "max", "min", "sorted", "reversed", "enumerate", "zip", "map", "filter"],
+          "module": "topics.Collection.iterable_inbuilt_methods"
+        }
+    ]
+  },  
+  { "title": "OOPs Concepts",
+    "description": "Covers the core principles of Object-Oriented Programming in Python.",
+    "tags": ["oop", "classes", "objects", "relationships", "inheritance", "encapsulation"],
+    "subtopics": [
+      { "title": "Basic OOP Concepts",
+        "description": "Introduces class, object, and method concepts.",
+        "tags": ["class", "object", "method", "Encapsulation"],
+        "module": "topics.OOPS.basic_oops_concepts"
+      },
+      { "title": "Relationships",
+        "description": "Details about all type of relationships between class (except inheritance)",
+        "tags": ["Agregation", "composition", "association"],
+        "module": "topics.OOPS.oops_relationships"
+      },
+      { "title": "Inheritance",
+        "description": "Explains types of inheritance and use cases.",
+        "tags": ["inheritance", "extends", "super", "superclass", "subclass", "Single Inheritance", "multiple", "diamond problem", "multilevel", "chain"],
+        "module": "topics.OOPS.inheritance_concepts"
+      },
+      { "title": "Special Methods (Magic/Dunder)",
+        "description": "Explains how special (magic/dunder) methods allow custom classes to integrate with Python's built-in behaviors.",
+        "tags": ["special methods", "magic methods", "dunder methods", "__init__", "__str__", "__repr__", "__new__", "__del__","__eq__", "__add__", "__len__", "__getitem__", "__getattr__", "__setattr__", "__call__", "__enter__", "__exit__", "operator overloading", "context manager"],
+        "module": "topics.OOPS.oops_special_methods"
+      }
+    ]
+  },
+  { "title": "Functions in Python",
+    "description": "Explore basic to advanced function handling in Python.",
+    "tags": ["functions", "lambda", "decorators", "annotations"],
+    "subtopics": [
+      {
+        "title": "Function Basics",
+        "description": "Syntax and usage of functions.",
+        "tags": ["def", "return", "parameters"],
+        "module": "topics.functions.function_basics"
+      },
+      {
+        "title": "Advanced Functions",
+        "description": "Explore lambda, annotations, and decorators.",
+        "tags": ["lambda", "annotations"],
+        "subtopics": [
+          {
+            "title": "Lambda Functions",
+            "description": "Anonymous functions for short tasks.",
+            "tags": ["lambda", "anonymous"],
+            "module": "topics.functions.lambda_functions"
+          },
+          {
+            "title": "Function Annotations",
+            "description": "Type hints and documentation using annotations.",
+            "tags": ["annotations", "type hints"],
+            "module": "topics.functions.function_annotations"
+          }
+        ]
+      }
+    ]
+  },
+  { "title": "Exception Handling",
+    "description": "Explore basic to advanced exception handling concepts in Python.",
+    "tags": ["try-exception", "try-exception-else", "try-exception-finally", "try-exception chain", "raise", "custom exception"],
+    "subtopics": [
+      { "title": "Exceptions handling basic ",
+        "description": "Explains how to catch exception by try-exception-else-finally, Handling Specific Exceptions, and exception chaining and grouping.",
+        "tags": ["exception", "error handling", "validation", "try", "except", "else", "finally", "try-exception chain", "exception-grouping", "built-in exceptions"],
+        "module": "topics.Exception_Handling.exception_handling_basics"
+      },
+      { "title": "Raising Exceptions (`raise`)",
+        "description": "Explains how to deliberately trigger exceptions using the `raise` keyword for input validation, error signaling, and exception chaining.",
+        "tags": ["raise", "exception", "error handling", "validation", "re-raise", "raise from"],
+        "module": "topics.Exception_Handling.exception_handling_advance"
+      },
+      { "title": "Custom Exceptions",
+        "description": "Covers how to create user-defined exception classes by inheriting from Python's base `Exception` class to build a clear and specific error handling model.",
+        "tags": ["custom exception", "user-defined exception", "exception hierarchy", "inheritance", "Exception", "class", "__init__", "error handling", "raise", "try", "except"],
+        "module": "topics.Exception_Handling.custom_exceptions"
+      }
+
+    ]
+  },
+  { "title": "File Handling",
+    "description": "A comprehensive guide to reading from and writing to files in Python. Covers text files, structured data like JSON and CSV, and advanced topics like character encodings and binary file manipulation.",
+    "tags": ["file handling", "I/O", "open", "read", "write", "text", "json", "csv", "binary", "encoding", "with statement"],
+    "subtopics": [
+     {"title": "File Handling Fundamentals (Modern Way)",
+      "description": "Covers the modern, standard way to read and write text files using the `with` statement. Explains file modes, reading methods, and how to use seek() and tell().",
+      "tags": ["file handling", "I/O", "open", "with", "read", "write", "append", "seek", "tell", "close", "text file"],
+      "module": "topics.File_Handling.file_handling_new_way"
+    },
+    {"title": "File Handling (Old Manual Method)",
+      "description": "Explains the legacy method of manually using open() and close(). Highlights the dangers of resource leaks and demonstrates why the 'with' statement is superior.",
+      "tags": ["file handling", "legacy code", "manual", "open", "close", "try finally", "anti-pattern", "resource leak"],
+      "module": "topics.File_Handling.file_handling_old_way"
+    },
+    {
+      "title": "File Handling: JSON Data",
+      "description": "Explains how to serialize Python objects (like dictionaries) into JSON files and deserialize JSON back into Python objects using the `json` module.",
+      "tags": ["json", "file handling", "serialization", "deserialization", "dump", "load", "dumps", "loads", "api", "config"],
+      "module": "topics.File_Handling.json_file_handling"
+    },
+    {
+      "title": "File Handling: CSV Data",
+      "description": "Covers how to read from and write to CSV files. Explains both list-based (`reader`, `writer`) and dictionary-based (`DictReader`, `DictWriter`) methods.",
+      "tags": ["csv", "file handling", "comma separated values", "spreadsheet", "tabular data", "reader", "writer", "DictReader", "DictWriter"],
+      "module": "topics.File_Handling.csv_file_handling"
+    },
+    {
+      "title": "Advanced File Handling: Encodings & Binary Files",
+      "description": "Explains the importance of character encoding (`utf-8`) to prevent errors and how to work with non-text files (images, etc.) using binary mode ('rb', 'wb').",
+      "tags": ["file handling", "advanced", "encoding", "utf-8", "UnicodeDecodeError", "binary files", "bytes", "rb", "wb"],
+      "module": "topics.File_Handling.file_handling_advanced"
+    }
+  ]
+}
+
+]

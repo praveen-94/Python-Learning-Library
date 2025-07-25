@@ -1,0 +1,21 @@
+# .gitignore
+
+# Ignore virtual environments
+venv/
+.venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS system files
+.DS_Store
+
+# IDE-specific folders (optional but recommended)
+.idea/
+.vscode/
+
+# Output files from your project
+*.html
+*.pdf
