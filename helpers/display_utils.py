@@ -1,5 +1,6 @@
 # helpers/display_utils.py
 
+from typing import Optional
 from rich.console import Console
 from rich.panel import Panel
 from rich.markdown import Markdown
@@ -7,9 +8,10 @@ from rich.syntax import Syntax
 from pathlib import Path
 from playwright.async_api import async_playwright
 from .custom_terminal_themes import get_terminal_theme
+from rich.table import Table
+from typing import List
 #from rich.columns import Columns
 #import rich.terminal_theme as themes
-
 #console = Console()
 console = Console(record=True)
 
@@ -56,7 +58,7 @@ def print_small_sub_heading(title: str, from_new_line: bool = False)-> None:
     print("-" * (len(title) + 6))  # Print a line of dashes equal to the length of the title plus 2 for padding
 
 
-def display_note(message: str, type: str="note", icon: str=None, message_continue: str=False)-> None:
+def display_note(message: str, type: str="note", icon: Optional[str]=None, color: Optional[str]=None, message_continue: bool=False)-> None:
     """
     Display a styled note message.
     Supported types: 'note', 'info', 'warning', 'tip', 'error', 'example'
@@ -84,7 +86,7 @@ def display_note(message: str, type: str="note", icon: str=None, message_continu
     }
 
     icon = icon if icon else icons.get(type.lower())
-    style = colors.get(type.lower())
+    style = color if color else colors.get(type.lower())
     if(message_continue):
         icon_style_str=f"{icon} {type.capitalize()}: "
         icon_style_len=len(icon_style_str)  # calculating combine length of icon, type and message
@@ -110,6 +112,27 @@ def imp_note_points(points: str)-> None:
     width=134,
     style="on black" )
     console.print(panel)
+
+
+def render_2d_table(data: List[List], title: str="📋 Data Table", inner_border: bool=False):
+    if not data or not all(isinstance(row, list) for row in data):
+        console.print("[bold red]Invalid or empty data provided.[/bold red]")
+        return
+
+    headers = data[0]
+    rows = data[1:]
+    table = Table(title=title, show_lines=inner_border, header_style="bold bright_cyan", title_justify="left", row_styles=["white", "grey23"])
+
+    for header in headers: # Adding headers
+        table.add_column(str(header), style="bold cyan")
+
+    for row in rows: # Adding rows
+        # Ensure all rows have the same number of columns
+        padded_row = row + [""] * (len(headers) - len(row))
+        table.add_row(*[str(cell) for cell in padded_row])
+
+    console.print(table)
+
 
 def show_code_with_output(code_str: str, output_str: str)-> None:
     """

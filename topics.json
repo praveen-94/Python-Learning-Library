@@ -148,39 +148,86 @@
         "description": "Explains how special (magic/dunder) methods allow custom classes to integrate with Python's built-in behaviors.",
         "tags": ["special methods", "magic methods", "dunder methods", "__init__", "__str__", "__repr__", "__new__", "__del__","__eq__", "__add__", "__len__", "__getitem__", "__getattr__", "__setattr__", "__call__", "__enter__", "__exit__", "operator overloading", "context manager"],
         "module": "topics.OOPS.oops_special_methods"
+      },
+      { "title": "Metaclasses",
+        "description": "Learn how metaclasses define class creation and behavior, enabling advanced customization and validation of classes.",
+        "tags": ["metaclass", "class creation", "type", "advanced", "customization", "validation"],
+        "module": "topics.OOPS.metaclasses"
       }
     ]
   },
   { "title": "Functions in Python",
-    "description": "Explore basic to advanced function handling in Python.",
-    "tags": ["functions", "lambda", "decorators", "annotations"],
-    "subtopics": [
-      {
-        "title": "Function Basics",
-        "description": "Syntax and usage of functions.",
-        "tags": ["def", "return", "parameters"],
-        "module": "topics.functions.function_basics"
-      },
-      {
-        "title": "Advanced Functions",
-        "description": "Explore lambda, annotations, and decorators.",
-        "tags": ["lambda", "annotations"],
-        "subtopics": [
-          {
-            "title": "Lambda Functions",
-            "description": "Anonymous functions for short tasks.",
-            "tags": ["lambda", "anonymous"],
-            "module": "topics.functions.lambda_functions"
-          },
-          {
-            "title": "Function Annotations",
-            "description": "Type hints and documentation using annotations.",
-            "tags": ["annotations", "type hints"],
-            "module": "topics.functions.function_annotations"
-          }
-        ]
-      }
-    ]
+   "description": "Explore basic to advanced function handling in Python.",
+   "tags": ["functions", "lambda", "decorators", "comprehensions", "generators", "functional programming", "functools"],
+   "subtopics": [
+    {"title": "Basic Function Concepts",
+      "description": "Syntax, arguments, return values, and usage of basic Python functions.",
+      "tags": ["def", "function basics", "parameters", "return"],
+      "module": "topics.Functions.Basic_Concept.function_basics"
+    },
+    { "title": "Function Decorators",
+      "description": "Complete guide to Python decorators: syntax, chaining, types, and best practices.",
+      "tags": ["decorators", "syntax", "classmethod", "staticmethod", "property"],
+      "subtopics": [
+        { "title": "Function Decorators Basics",
+          "description": "Introduction to function decorators in Python.",
+          "tags": ["decorators", "syntax"],
+          "module": "topics.Functions.Function_Decorators.function_decorators"
+        },
+        { "title": "Chaining Decorators",
+          "description": "How to chain multiple decorators for complex behaviors.",
+          "tags": ["decorators", "chaining"],
+          "module": "topics.Functions.Function_Decorators.function_deco_chaining"
+        },
+        { "title": "Built-in Decorators",
+          "description": "Usage of built-in decorators: property, staticmethod, classmethod.",
+          "tags": ["decorators", "property", "staticmethod", "classmethod"],
+          "module": "topics.Functions.Function_Decorators.function_built_in_decorators"
+        },
+        { "title": "Class Decorators",
+          "description": "Decorator usage for classes and advanced patterns.",
+          "tags": ["decorators", "class decorator"],
+          "module": "topics.Functions.Function_Decorators.function_class_decorators"
+        },
+        { "title": "Class vs Function based Decorators",
+          "description": "Compare class-based and function-based decorator approaches.",
+          "tags": ["decorators", "class decorator", "function decorator"],
+          "module": "topics.Functions.Function_Decorators.class_vs_func_based_class_deco"
+        }
+      ]
+    },
+    { "title": "Advanced Function Concepts",
+      "description": "Explore functional programming, comprehensions, lambda, generators, and functools.",
+      "tags": ["lambda", "generators", "functools", "comprehensions", "functional programming"],
+      "subtopics": [
+        { "title": "Lambda Expression",
+          "description": "Anonymous, one-line functions for inline use.",
+          "tags": ["lambda", "anonymous", "short function"],
+          "module": "topics.Functions.Advance_Concepts.lambda_expression"
+        },
+        { "title": "List Comprehension",
+          "description": "Create lists efficiently with expressions and conditions.",
+          "tags": ["comprehension", "list", "short syntax"],
+          "module": "topics.Functions.Advance_Concepts.list_comprehension"
+        },
+        { "title": "Generators",
+          "description": "Produce values lazily using yield and generator expressions.",
+          "tags": ["generators", "yield", "lazy evaluation"],
+          "module": "topics.Functions.Advance_Concepts.generators"
+        },
+        { "title": "functools Module",
+          "description": "Caching, partial application, metadata preservation, and more.",
+          "tags": ["functools", "lru_cache", "wraps", "partial", "reduce", "total_ordering"],
+          "module": "topics.Functions.Advance_Concepts.func_tools_module"
+        },
+        { "title": "Functional Programming Patterns",
+          "description": "Explore map, filter, reduce, and higher-order functions.",
+          "tags": ["map", "filter", "reduce", "functional programming", "higher order"],
+          "module": "topics.Functions.Advance_Concepts.functional_programming_concepts"
+        }
+      ]
+    }
+   ]
   },
   { "title": "Exception Handling",
     "description": "Explore basic to advanced exception handling concepts in Python.",
@@ -237,6 +284,51 @@
       "module": "topics.File_Handling.file_handling_advanced"
     }
   ]
-}
-
+  },
+  { "title": "Modules and Packages",
+    "description": "A deep dive into how Python organizes code into modules and packages. Covers the basics of importing, namespaces, and explores several essential built-in modules from the standard library.",
+    "tags": ["module", "package", "import", "namespace", "built-in", "standard library", "os", "pathlib", "datetime", "re", "math", "random"],
+    "subtopics": [
+     {"title": "Introduction to Python Modules",
+      "description": "Covers the basics of Python modules (a single .py file). Explains how to use `import`, `from...import`, and aliases (`as`) to reuse code and manage namespaces.",
+      "tags": ["module", "import", "from", "as", "namespace", ".py file", "code reuse", "script"],
+      "module": "topics.modules_packages.module_basics"
+    },
+    {"title": "Introduction to Python Packages",
+      "description": "Explains the fundamentals of Python packages, which are directories of modules. Covers the role of `__init__.py` and how packages help organize large projects.",
+      "tags": ["package", "module", "import", "organization", "directory", "namespace", "__init__.py"],
+      "module": "topics.modules_packages.package_basics"
+    },
+    { "title": "The `os` Module",
+      "description": "Demonstrates how to interact with the operating system using the `os` module. Covers path manipulation, directory operations (`listdir`, `mkdir`), and environment variables.",
+      "tags": ["os", "operating system", "file system", "directory", "path", "getcwd", "listdir", "mkdir", "environ"],
+      "module": "topics.modules_packages.os_module_examples"
+    },
+    {"title": "Modern Paths with `pathlib`",
+      "description": "Explains the modern, object-oriented way to handle filesystem paths using the `pathlib` module, which is the recommended alternative to `os.path`.",
+      "tags": ["pathlib", "path", "object-oriented", "file system", "Path", "modern", "os.path", "directory"],
+      "module": "topics.modules_packages.pathlib_module_examples"
+    },
+    {"title": "The `random` Module",
+      "description": "Covers how to generate pseudo-random numbers and perform random operations using the `random` module. Includes examples for `randint`, `choice`, and `shuffle`.",
+      "tags": ["random", "rng", "pseudo-random", "randint", "choice", "shuffle", "random number", "seed"],
+      "module": "topics.modules_packages.random_module_examples"
+    },
+    {"title": "Regular Expressions: The `re` Module",
+      "description": "An introduction to regular expressions for pattern matching in strings. Covers the core functions of the `re` module, including `search`, `match`, `findall`, and `sub`.",
+      "tags": ["re", "regex", "regular expression", "pattern matching", "search", "match", "findall", "sub", "string"],
+      "module": "topics.modules_packages.re_module_examples"
+    },
+    {"title": "The `math` Module",
+      "description": "Explores the built-in `math` module, which provides access to common mathematical functions (`sqrt`, `pow`, `ceil`, `floor`) and constants (`pi`, `e`).",
+      "tags": ["math", "mathematics", "sqrt", "pow", "ceil", "floor", "pi", "constants", "trigonometry"],
+      "module": "topics.modules_packages.math_module_examples"
+    },
+    {"title": "The `datetime` Module",
+      "description": "Covers how to work with dates, times, and time differences using the `datetime` module. Includes examples for `date`, `time`, `datetime`, and `timedelta` objects.",
+      "tags": ["datetime", "date", "time", "timedelta", "timezone", "strftime", "strptime", "formatting"],
+      "module": "topics.modules_packages.datetime_module_examples"
+    }
+   ]
+  }
 ]

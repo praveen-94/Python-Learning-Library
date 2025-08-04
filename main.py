@@ -33,6 +33,10 @@ def handle_menu(level_name, items):
                         mod.main()
 
                         if Confirm.ask("\n[bold yellow]Do you want to export this output to an HTML file?[/]"):
+                            if mod.__file__ is None:
+                                print(f"❌ Module {selected['module']} does not have a __file__ attribute.")
+                                pause()
+                                continue
                             module_path = Path(mod.__file__)
                             notes_dir = module_path.parent / "Notes"
                             notes_dir.mkdir(parents=True, exist_ok=True)

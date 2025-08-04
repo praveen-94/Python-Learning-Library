@@ -54,16 +54,23 @@ python main.py
 ---------------------------------------------------------------------------------------------------------------------------------------
 ## 📝 Topics Covered
 ---------------------------------------------------------------------------------------------------------------------------------------
-| Topic       | Status          | Description                                  |
-|-------------|-----------------|----------------------------------------------|
-| Strings     | ✅ Done         | String methods, slicing, formatting, etc.    |
-| Functions   | ✅ Done         | Parameters, annotations, docstrings, return  |
-| Loops       | 🔄 In Progress  | `for`, `while`, nested, break/continue       |
-| Lists       | ⏳ Upcoming     | List methods, slicing, list comps            |
-| Dictionaries| ⏳ Upcoming     | Key/value pairs, methods, nesting            |
-| File I/O    | ⏳ Upcoming     | Reading and writing files                    |
-| OOP         | ⏳ Upcoming     | Classes, objects, inheritance, decorators    |
---------------------------------------------------------------------------------
+| Topic                   | ⏳Status        | Description                                      |
+|-------------------------|-----------------|--------------------------------------------------|
+| Basic functionality     | ✅ Done         | Input and print function, Data Types             |
+| Operators Usage         | ✅ Done         | All operators and their function                 |
+| Control Statements      | ✅ Done         | Selection and iterative (loops) statements       |
+| Variable                | ✅ Done         | Types of variable and their scope                |
+| Strings                 | ✅ Done         | String methods, slicing, formatting, etc.        |
+| Lists                   | ✅ Done         | Creation, methods, slicing, etc.                 |
+| Tuples                  | ✅ Done         | Creation, methods, etc.                          |
+| Sets                    | ✅ Done         | Creation, properties, methods, set based methods |
+| Dictionaries            | ✅ Done         | Creation, Key/value pairs, methods               |
+| Functions               | ✅ Done         | Parameters, annotations, docstrings, return      |
+| OOP                     | ✅ Done         | Classes, objects, inheritance, decorators        |
+| File I/O                | ✅ Done         | Reading and writing files                        |
+| Exception Handling      | ✅ Done         | How to handle, raise and create exception        |
+| Modules and Packages    | ✅ Done         | Create, import and use of built-in modules       |
+------------------------------------------------------------------------------------------------
 Track progress: [`progress.md`](progress.md)
 
 ---------------------------------------------------------------------------------------------------------------------------------------

@@ -123,7 +123,8 @@ print(f"The square of 5 is: {square(5)}")'''
     # 8) function with annotations
     print_sub_heading("8) Function with annotations")
     display_note("Function annotations are a way to attach metadata (like expected types) to function parameters and return values.")
-    display_note("These annotations do not enforce type checking at runtime—they're mainly used for documentation, IDE support, and static analysis tools.")
+    display_note("These annotations do not enforce type checking at runtime— they're mainly used for documentation, IDE support, ")
+    display_note("and static analysis tools.", message_continue=True)
     show_code_with_output('''# function with annotations
 def multiply(a: int, b: int) -> int:
     return a * b

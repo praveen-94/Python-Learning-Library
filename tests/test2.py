@@ -1,48 +1,77 @@
 # helpers/display_utils.py
-
+from typing import Optional
 from rich.console import Console
 from rich.panel import Panel
 from rich.markdown import Markdown
 from rich.syntax import Syntax
-from rich.columns import Columns
-console = Console()
+from pathlib import Path
+from rich.table import Table
+from typing import List
+from playwright.async_api import async_playwright
+#from rich.columns import Columns
+#import rich.terminal_theme as themes
 
-def print_heading(title, description = "This Program is for showing working of "):
-    """Prints a stylish heading."""
+#console = Console()
+console = Console(record=True)
+
+def print_heading(title: str, description: str = "This Program is for showing working of ")-> None:
+    """
+    Prints a stylish heading along with its use
+    Args:
+        title (str): Heading of any topic
+        description (str): Details of operation or task to perform on that topic
+    """
     panel = Panel(
     renderable=description + title,
     title=title,
     title_align="left",
     padding=(0,0,0,2),
     safe_box=True,
-    border_style="bold green",
+    border_style="bold red",
+    width=136,
     style="on black" ) #Other arguments: subtitle="Demo", subtitle_align="left", width=30, height=10, expand=False, box=box.DOUBLE
     console.print(panel)
 
-def print_sub_heading(title):
-    """Prints a numbered section sub-heading like: '8) Formatting Methods'"""
+
+def print_sub_heading(title: str)-> None:
+    """
+    Prints a numbered section sub-heading like: '8) Formatting Methods'
+    Args:
+        title (str): SubHeading of any topic
+    """
     print()
-    panel = Panel(renderable=title, safe_box=True, border_style="bold cyan", style="on black", width=200)
+    panel = Panel(renderable=title, safe_box=True, border_style="bold cyan", style="on black", width=134)
     console.print(panel)
 
-def print_small_sub_heading(title, from_new_line=False):
-    """Prints a numbered section sub-heading inside sun-heading'"""
+
+def print_small_sub_heading(title: str, from_new_line: bool = False)-> None:
+    """
+    Prints a numbered section sub-heading inside Sub-heading'
+    Args:
+        title (str): SubHeading of any topic
+        from_new_line (bool): want heading to start from newline
+    """
     if(from_new_line):
          print()
     print(f" # {title}:")
     print("-" * (len(title) + 6))  # Print a line of dashes equal to the length of the title plus 2 for padding
 
-def display_note(message, type="note", icon: str=None, message_continue=False):
+def display_note(message: str, type: str="note", icon: Optional[str]=None, color: Optional[str]=None, message_continue: bool=False)-> None:
     """
     Display a styled note message.
-    Supported types: 'note', 'info', 'warning', 'tip', 'error'
+    Supported types: 'note', 'info', 'warning', 'tip', 'error', 'example'
+    Args:
+        message (str): Message to print
+        type (str): Types of message
+        icon (str): imoji to print along with type
     """
     icons = {
         "note": "📝",
         "info": "ℹ️ ",
         "warning": "⚠️ ",
         "tip": "💡",
-        "error": "❌"
+        "error": "❌",
+        "example": "📘",
     }
 
     colors = {
@@ -50,11 +79,12 @@ def display_note(message, type="note", icon: str=None, message_continue=False):
         "info": "cyan",
         "warning": "yellow",
         "tip": "green",
-        "error": "red"
+        "error": "red",
+        "example": "blue",
     }
 
     icon = icon if icon else icons.get(type.lower())
-    style = colors.get(type.lower())
+    style = color if color else colors.get(type.lower())
     if(message_continue):
         icon_style_str=f"{icon} {type.capitalize()}: "
         icon_style_len=len(icon_style_str)  # calculating combine length of icon, type and message
@@ -63,8 +93,13 @@ def display_note(message, type="note", icon: str=None, message_continue=False):
     else:
         console.print(f"[{style}]{icon} {type.capitalize()}: {message}[/]")
 
-def imp_note_points(points):
-    """Prints a stylish important points."""
+
+def imp_note_points(points: str)-> None:
+    """
+    Prints a stylish important points.
+    Args:
+       points (str): multiline string containing important notes
+    """
     markdown = Markdown(points)
     panel = Panel.fit(
     renderable=markdown,
@@ -72,154 +107,63 @@ def imp_note_points(points):
     title_align="left",
     safe_box=True,
     border_style="bold magenta",
-    width=150,
+    width=134,
     style="on black" )
     console.print(panel)
 
-def display_code_n_output(code,output):
-        console.print(f"[bold bright_white]{code}:[/]")
-        console.print(Syntax)
-        console.print(f"\n[bold bright_green]Output:[/] {output}")
-
-def show_code_with_output(code_str: str, output_str: str):
+def show_code_with_output(code_str: str, output_str: str)-> None:
     """
     Render code and its output side-by-side using Rich panels.
     Args:
         code_str (str): The Python code to display.
         output_str (str): The output/result of the code.
     """
-    syntax_panel = Panel(Syntax(code_str, "python", line_numbers=True, theme="monokai"), title="🐍 Code",)
-    output_panel = Panel(output_str, title="🖨️ Output")
-    console.print(Columns([syntax_panel, output_panel]))
+    #themes: gruvbox-dark, ansi_dark, fruity, monokai, github-dark
+    syntax_panel = Panel(Syntax(code_str, "python", line_numbers=True, theme="gruvbox-dark"), title="🐍 Code", title_align="left", expand=False)
+    output_panel = Panel(output_str, title="🖨️ Output", title_align="left", highlight=True, expand=False)
+    #console.print(Columns([syntax_panel, output_panel], column_first=True))
+    console.print(syntax_panel)
+    console.print(output_panel)
 
-# file_io_deep_dive.py
+def render_2d_table(data: List[List], title: str="📋 Data Table", inner_border: bool=False):
+    if not data or not all(isinstance(row, list) for row in data):
+        console.print("[bold red]Invalid or empty data provided.[/bold red]")
+        return
 
-import os # Needed to clean up the sample file
+    headers = data[0]
+    rows = data[1:]
+    table = Table(title=title, show_lines=inner_border, header_style="bold bright_cyan", title_justify="left", row_styles=["white", "grey23"])
 
-def main():
-    print_heading("File Handling (I/O) in Python")
-    imp_note_points("""
-- File Handling (Input/Output) is the process of reading from and writing to files on your computer.
-- The built-in `open()` function is the primary tool for this, creating a file object to work with.
-- The most crucial best practice is to always ensure a file is closed after use to free up system resources.
-- The `with` statement is the modern, recommended way to handle files as it guarantees they are closed automatically.
-- **Common File Modes:**
-  - `'r'` - **Read (default):** Opens for reading. Fails if the file does not exist.
-  - `'w'` - **Write:** Opens for writing. **Creates a new file or overwrites an existing one.**
-  - `'a'` - **Append:** Opens for appending. New data is written to the end of the file.
-  - `'+'` - Can be added to a mode (e.g., `'r+'`) to allow both reading and writing.
-""")
+    for header in headers: # Adding headers
+        table.add_column(str(header), style="bold cyan")
 
-    # -----------------------------------------------------------------------------------------------------------------------------------------------
-    # 1. Opening Files and Writing Content
-    # -----------------------------------------------------------------------------------------------------------------------------------------------
-    print_sub_heading("1. Opening Files and Writing Content")
-    display_note("The `with open(...)` syntax is the standard, safe way to manage file objects. It automatically handles closing the file.")
-    print_small_sub_heading("a) Writing and Appending to a File")
-    show_code_with_output('''# Write mode ('w') overwrites the file
-with open('journal.txt', 'w') as f:
-    f.write("Journal Entry\\n")
-    f.writelines(["First line.\\n", "Second line.\\n"])
+    for row in rows: # Adding rows
+        # Ensure all rows have the same number of columns
+        padded_row = row + [""] * (len(headers) - len(row))
+        table.add_row(*[str(cell) for cell in padded_row])
 
-# Append mode ('a') adds to the end of the file
-with open('journal.txt', 'a') as f:
-    f.write("Third line, appended later.\\n")'''
-,
-'''Journal Entry
-First line.
-Second line.
-Third line, appended later.
+    console.print(table)
+
+imp_note_points('''WORKFLOW  
+Input List: [1, 2, 3, 4, 5]  
+Step-by-step Execution of: reduce(add, [1, 2, 3, 4, 5])                               
+`┌──────┐                                                       `  
+`│Start │─────→  1, 2,     3,     4,     5                      `  
+`└──────┘        ┬  ┬      ┬      ┬      ┬                      `  
+`               a│  │b     │      │      │                      `  
+`                ↓  ↓      │      │      │                      `  
+`            add(1, 2)→ 3  │      │      │                      `  
+`                       ┬  │      │      │                      `  
+`                      a│  │b     │      │                      `  
+`                       ↓  ↓      │      │                      `  
+`                   add(3, 3)→ 6  │      │                      `  
+`                              ┬  │      │                      `  
+`                             a│  │b     │                      `  
+`                              ↓  ↓      |                      `  
+`                          add(6, 4)→ 10 │                      `  
+`                                     ┬  │                      `  
+`                                    a│  │b                     `  
+`                                     ↓  ↓             ┌──────┐ `  
+`                                add(10, 5)→ 15 ──────→│ End  │ `  
+`                                                      └──────┘ `  
 ''')
-
-    # -----------------------------------------------------------------------------------------------------------------------------------------------
-    # 2. Reading from Files
-    # -----------------------------------------------------------------------------------------------------------------------------------------------
-    print_sub_heading("2. Reading from Files")
-    display_note("For these examples, assume we have a file named `poem.txt` with the content:")
-    display_note("The road goes ever on and on",message_continue=True)
-    display_note("Down from the door where it began.",message_continue=True)
-    print_small_sub_heading("a) `read()` - Read the Entire File into One String")
-    show_code_with_output('''# by `read()` method
-with open('poem.txt', 'r') as f:
-    content = f.read()
-    print(content)'''
-,
-'''The road goes ever on and on,
-Down from the door where it began.
-''')
-
-    print_small_sub_heading("b) The Best Way: Iterating Over the File Object",from_new_line=True)
-    display_note("This is the most common and memory-efficient way to read a file, as it reads one line at a time.", "tip")
-    show_code_with_output('''# by for loop
-with open('poem.txt', 'r') as f:
-    for line in f:
-        print(line.strip()) # .strip() removes leading/trailing whitespace'''
-,
-'''The road goes ever on and on,
-Down from the door where it began.''')
-
-    # -----------------------------------------------------------------------------------------------------------------------------------------------
-    # 3. Exploring the File Object (`seek`, `tell`, and attributes)
-    # -----------------------------------------------------------------------------------------------------------------------------------------------
-    print_sub_heading("3. Exploring the File Object (`seek`, `tell`, attributes)")
-    display_note("The file object returned by `open()` has methods to control the file pointer (cursor) and attributes to check its state.")
-    # Create a sample file for demonstration
-    sample_filename = 'sample_data.txt'
-    with open(sample_filename, 'w') as f:
-        f.write('0123456789abcdefghijklmnopqrstuvwxyz')
-
-    # Code to be displayed
-    code_to_show = '''# Using file object methods within a 'with' block
-sample_filename = 'sample_data.txt'
-with open('{sample_filename}', 'r') as f:
-    # --- Attributes ---
-    print("--- File Object Attributes ---")
-    print(f"File Name (f.name): {f.name}")
-    print(f"File Mode (f.mode): {f.mode}")
-    print(f"Is file readable? (f.readable()): {f.readable()}")
-
-    # --- Methods: tell() and read() ---
-    print("\\n--- Methods: tell() and read() ---")
-    print(f"Cursor position at start (f.tell()): {f.tell()}")
-    chunk1 = f.read(10) # Read the first 10 bytes
-    print(f"Read 10 chars: '{{chunk1}}'")
-    print(f"Cursor position now (f.tell()): {f.tell()}")
-
-    # --- Methods: seek() ---
-    print("\\n--- Methods: seek() ---")
-    print("Moving cursor to byte 5 with f.seek(5)...")
-    f.seek(5)
-    print(f"Position after seek(5): {f.tell()}")
-    chunk2 = f.read(5) # Read the next 5 bytes from the new position
-    print(f"Reading 5 chars from new position: '{{chunk2}}'")
-
-# After the 'with' block, the file is automatically closed
-print(f"\\nIs file closed outside the 'with' block? {f.closed}")'''
-
-    # Execute the code to generate the output ---
-    with open(sample_filename, 'r') as f:
-        output_str = f"--- File Object Attributes ---\n"
-        output_str += f"File Name (f.name): {f.name}\n"
-        output_str += f"File Mode (f.mode): {f.mode}\n"
-        output_str += f"Is file readable? (f.readable()): {f.readable()}\n\n"
-        output_str += f"--- Methods: tell() and read() ---\n"
-        output_str += f"Cursor position at start (f.tell()): {f.tell()}\n"
-        chunk1 = f.read(10)
-        output_str += f"Read 10 chars: '{chunk1}'\n"
-        output_str += f"Cursor position now (f.tell()): {f.tell()}\n\n"
-        output_str += f"--- Methods: seek() ---\n"
-        output_str += f"Moving cursor to byte 5 with f.seek(5)...\n"
-        f.seek(5)
-        output_str += f"Position after seek(5): {f.tell()}\n"
-        chunk2 = f.read(5)
-        output_str += f"Reading 5 chars from new position: '{chunk2}'\n"
-    output_str += f"\nIs file closed outside the 'with' block? {f.closed}"
-    
-    show_code_with_output(code_to_show, output_str)
-
-    # Clean up the sample file
-    os.remove(sample_filename)
-
-
-if __name__ == "__main__":
-    main()
