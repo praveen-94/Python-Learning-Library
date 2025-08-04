@@ -3,8 +3,9 @@ from helpers.display_utils import *
 def main():
     print_heading("OOP Relationship- Composition, Aggregation, and Association Demo")
     print_sub_heading("1) Association (Uses-a Relationship, Weaker relationship)")
-    display_note("Association is a relationship where one class uses another class without ownership. It can be one-to-one, one-to-many, or many-to-many, both can exist independently.")
-    display_note("Ex: A customer can use a payment method, but the payment method does not own the customer.", "example", "👤")
+    display_note("Association is a relationship where one class uses another class without ownership. ")
+    display_note("It can be one-to-one, one-to-many, or many-to-many, both can exist independently.", message_continue=True)
+    display_note("A customer can use a payment method, but the payment method does not own the customer.", "example", "👤")
     show_code_with_output('''
     class Customer:
         def __init__(self, name):
@@ -23,8 +24,9 @@ def main():
     "Alice is using Credit Card for payment.\n")
 
     print_sub_heading("2) Aggregation (Has-a Relationship)")
-    display_note("Aggregation is a special form of association where one class contains references to another class, but the contained class can exist independently.")
-    display_note("Ex: Example: Department has professors", "example", "📚")
+    display_note("Aggregation is a special form of association where one class contains references to another class, ")
+    display_note("but the contained class can exist independently.", message_continue=True)
+    display_note("Department has professors", "example", "📚")
     show_code_with_output('''
     class Professor:
         def __init__(self, name):
@@ -55,7 +57,7 @@ def main():
     print_sub_heading("3) Composition (Part-of Relationship, Stronger relationship)")
     display_note("A strong form of aggregation where the contained class cannot exist independently of the containing class.")
     display_note("If the containing class is destroyed, the contained class is also destroyed.")
-    display_note("Ex: A car has an engine, if the car is destroyed, the engine is also destroyed.", "example", "🚗")
+    display_note("A car has an engine, if the car is destroyed, the engine is also destroyed.", "example", "🚗")
     show_code_with_output('''
     class Engine:
         def __init__(self, type):

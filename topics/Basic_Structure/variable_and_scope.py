@@ -5,7 +5,8 @@ def main():
 
     #Basic Variable Concepts -----------------------------
     print_sub_heading("0) Understanding Variables in Python")
-    display_note("A variable is a named container used to store data. You can assign different types of values to variables without declaring their type explicitly.")
+    display_note("A variable is a named container used to store data. ")
+    display_note("You can assign different types of values to variables without declaring their type explicitly.", message_continue=True)
     display_note("Python is dynamically typed — the type is inferred from the value.")
     show_code_with_output('''# Variable assignment
 x = 10

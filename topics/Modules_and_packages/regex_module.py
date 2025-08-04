@@ -20,7 +20,8 @@ def main():
     display_note("These are the primary functions you'll use to search for patterns in strings.")
 
     print_small_sub_heading("a) re.search(pattern, string)",True)
-    display_note("Scans through a string, looking for the *first* location where the regex pattern produces a match. If found, it returns a 'match object'; otherwise, it returns `None`.")
+    display_note("Scans through a string, looking for the *first* location where the regex pattern produces a match. ")
+    display_note("If found, it returns a 'match object'; otherwise, it returns `None`.", message_continue=True)
     text = "You can contact me at info@example.com for more details."
     match = re.search(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', text)
     show_code_with_output(f'''# Find the first email address in a string
@@ -50,7 +51,8 @@ End Index: {match.end()}
 Span: {match.span()}''')
 
     print_small_sub_heading("c) re.match(pattern, string)", True)
-    display_note("This function only attempts to match the pattern at the *beginning* of the string. If the pattern doesn't start at index 0, it returns `None`.")
+    display_note("This function only attempts to match the pattern at the *beginning* of the string.")
+    display_note("If the pattern doesn't start at index 0, it returns `None`.", message_continue=True)
     text_to_match = "Python is powerful"
     match1 = re.match(r'Python', text_to_match)
     match2 = re.match(r'powerful', text_to_match)
@@ -105,8 +107,8 @@ censored_text)
     # 3. Compiling Patterns for Efficiency
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("3. Compiling Patterns for Efficiency")
-    display_note("If you are going to use the same regex pattern multiple times, it is more efficient to compile it first using `re.compile()`.")
-    display_note("The compiled pattern object has methods like `.search()`, `.findall()`, etc., so you don't have to pass the pattern in each time.", "tip")
+    display_note("If you are going to use same regex pattern multiple times, it is more efficient to compile it first using `re.compile()`.")
+    display_note("The compiled pattern object has methods like .search(), .findall(), etc., so you don't have to pass the pattern each time.", "tip")
     
     # Logic for output
     email_pattern = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')

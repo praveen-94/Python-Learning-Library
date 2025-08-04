@@ -14,18 +14,18 @@ def main():
     # Packages
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("1) Understanding Packages")
-    display_note("A package is a way to structure Python’s module namespace by using 'dotted module names'. Let's imagine a more complex file structure:", "example")
-    display_note("""
-project/
-├── main.py
-└── my_app/
-    ├── __init__.py
-    ├── math_ops.py
-    └── text_ops/
-        ├── __init__.py
-        └── formatting.py
-    """, "info")
-    display_note("The `__init__.py` files are essential. They can be empty, but they tell Python that the directory should be treated as a package.", "warning")
+    imp_note_points("""A package is a way to structure Python’s module namespace by using 'dotted module names'.  
+Let's imagine a more complex file structure:  
+***`project/`***  
+***`├── main.py`***  
+***`└── my_app/`***  
+***`    ├── __init__.py`***  
+***`    ├── math_ops.py`***  
+***`    └── text_ops/`***  
+***`        ├── __init__.py`***  
+***`        └── formatting.py`***  
+    """, "Example")
+    display_note("`__init__.py` file is essential. It can be empty, but it tell Python that the directory should be treated as a package.", "warning")
 
     print_sub_heading("2) Importing from a Package")
     display_note("You use dot notation to navigate the package hierarchy.")
@@ -55,8 +55,9 @@ print(title)'''
 "--- My Awesome Title ---")
 
     print_sub_heading("4) The Role of `__init__.py`")
-    display_note("`__init__.py` can also be used to make imports more convenient. You can import modules at the package level to expose them to the user.", "tip")
-    display_note("Let's modify `my_app/__init__.py` to simplify our imports.")
+    display_note("`__init__.py` can also be used to make imports more convenient. ", "tip")
+    display_note("You can import modules at the package level to expose them to the user.", "tip", message_continue=True)
+    display_note("Let's modify `my_app/__init__.py` to simplify our imports.", "example")
     show_code_with_output('''# File: my_app/__init__.py
 # By adding this line, 'add' is available directly from the 'my_app' package.
 from .math_ops import add

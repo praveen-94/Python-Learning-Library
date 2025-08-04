@@ -10,7 +10,8 @@ def main():
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     string1 = "Hello, world!"
     display_note("The 'upper()/lower()/title()' method converts all characters in the string to uppercase/lowercase/title case.")
-    display_note("The 'casefold()' method is more aggressive than 'lower()' and is used for case-insensitive comparisons, especially for languages with special characters.")
+    display_note("The 'casefold()' method is more aggressive than 'lower()' and is used for case-insensitive comparisons, ")
+    display_note("especially for languages with special characters.", message_continue=True)
     show_code_with_output('''string1 = "Hello, world!"
 print(f"Uppercase of {string1} by 'upper()' method: {string1.upper()}")
 print(f"Lowercase of 'Straße' by 'lower()' method: {'Straße'.lower()}")
@@ -27,8 +28,10 @@ print(f"Swapping case of {string1} by 'swapcase()' method: {string1.swapcase()}"
 "Swapping case of '" + string1 + "' by 'swapcase()' method: " + string1.swapcase())
 
     print_sub_heading("2) Character Testing (Boolean Checks)")
-    display_note("The 'isalpha()/isdigit()/isalnum()/isspace()/isdecimal()/isnumeric()isupper()/islower()/istitle()/isidentifier()/isprintable()/isascii()' method:")
-    display_note("They checks if all characters in the string are alpha/digit/alpha+digit/whitespace/decimal/numerical/uppercase/lowercase/titlecase/valid identifier/printable/ascii characters.")
+    display_note("The 'isalpha()/isdigit()/isalnum()/isspace()/isdecimal()/isnumeric()isupper()/islower()/istitle()/")
+    display_note("isidentifier()/isprintable()/isascii()' method:", message_continue=True)
+    display_note("They checks if all characters in the string are alpha/digit/alpha+digit/whitespace/decimal/numerical/")
+    display_note("uppercase/lowercase/titlecase/valid identifier/printable/ascii characters.", message_continue=True)
     show_code_with_output('''string1 = "Hello"
 print(f"Checking if all characters in '{string1}' are alphabetic: {string1.isalpha()}")
 print(f"Checking if all characters in '12345' are digits: {'12345'.isdigit()}")

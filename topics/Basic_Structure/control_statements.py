@@ -12,9 +12,9 @@ def main():
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("Selection Control statements")
     print_small_sub_heading("1) if statement")
-    user_input = int(input("Enter a number to check if it is equal to 10: "))
+    user_input = 10
     show_code_with_output('''# Example of if statement
-user_input = int(input("Enter a number to check if it is equal to 10: "))
+user_input = 10
 print("Enter Number is: {user_input})
 if(user_input == 10):
     print("User input is equal to 10")'''
@@ -23,9 +23,9 @@ if(user_input == 10):
 "User input is equal to 10" if user_input == 10 else "")
 
     print_small_sub_heading("2) if-else statement", True)
-    user_input2 = int(input("Enter a number to check if it is even or odd: "))
+    user_input2 = 1234
     show_code_with_output('''# Example of if-else statement
-user_input2 = int(input("Enter a number to check if it is even or odd: "))
+user_input2 = 1234
 print("Enter Number is: {user_input2})
 if(user_input2 % 2 == 0):
     print("User input is even")
@@ -36,9 +36,9 @@ else:
 "User input is even" if user_input2 % 2 == 0 else "User input is odd")
 
     print_small_sub_heading("3) if-elif-else statement", True)
-    user_input3 = int(input("Enter a number to check if it is positive, negative, or zero: "))
+    user_input3 = -20
     show_code_with_output('''# Example of if-elif-else statement
-user_input3 = int(input("Enter a number to check if it is positive, negative, or zero: "))
+user_input3 = -20
 print("Enter Number is: {user_input3})
 if(user_input3 > 0):
     print("User input is positive")
@@ -53,7 +53,7 @@ else:
     print_small_sub_heading("4) Dictionaries as Switch-Like Mappings", True)
     display_note("Python does not have a traditional switch-case statement, but you can use dictionaries to achieve similar functionality.")
     display_note("This approach allows you to define functions for each command and retrieve them using the input command as a key.")
-    display_note("If you want to handle unknown commands gracefully, you can provide a default function that returns a message for unknown commands.", "tip")
+    display_note("If you want to handle unknown commands gracefully, provide a default function that returns a message for unknown commands.", "tip")
     display_note("This way, you can avoid using multiple if-elif statements and keep your code clean and efficient.", "example")
     display_note("You can also use a lambda function to define the default or main behavior for unknown commands.", "example") 
     commands = {
@@ -63,7 +63,7 @@ else:
         "resume": lambda: "Resuming the process...",
         "unknown": lambda: "Unknown command!"
     }
-    user_input4 = input("Enter a command (start, stop, pause, resume): ").lower()
+    user_input4 = "resume"
     show_code_with_output('''# Example of dictionary as switch-like mapping
 commands = {
     "start": lambda: "Starting the process...",
@@ -72,7 +72,7 @@ commands = {
     "resume": lambda: "Resuming the process...",
     "unknown": lambda: "Unknown command!"
 }
-user_input4 = input("Enter a command (start, stop, pause, resume): ").lower()
+user_input4 = "resume"
 print("Enter Command is: {user_input4})
 print(commands.get(user_input4, commands["unknown"])())'''
 ,
@@ -82,9 +82,9 @@ commands.get(user_input4, commands["unknown"])())
     print_small_sub_heading("5) Ternary Operator", True)
     display_note("The ternary operator is a shorthand way to write an if-else statement in a single line.")
     display_note("It is useful for simple conditions where you want to assign a value based on a condition.", "tip")
-    user_input5 = int(input("Enter a number to check if it is even or odd: "))
+    user_input5 = 33
     show_code_with_output('''# Example of ternary operator
-user_input5 = int(input("Enter a number to check if it is even or odd: "))
+user_input5 = 33
 print("Enter Number is: {user_input5})
 result = "Even" if user_input5 % 2 == 0 else "Odd"
 print(f"User input is {result}")'''
@@ -97,9 +97,9 @@ f"User input is {'Even' if user_input5 % 2 == 0 else 'Odd'}")
     display_note("It is similar to switch-case statements in other languages.", "tip")
     display_note("It allows you to match patterns and execute code based on the matched pattern.", "example")
     display_note("The match case statement is available in Python 3.10 and later.", "warning")
-    user_input6 = input("Enter a day of the week: ").lower()
+    user_input6 = "thursday"
     show_code_with_output('''# Example of match case statement
-user_input6 = input("Enter a day of the week: ").lower()
+user_input6 = "thursday"
 print("Enter day of week is: {user_input6})
 match user_input8:
     case "monday":
@@ -146,7 +146,7 @@ for i in range(5):  # range(start, stop, step): generate from start to stop-1 wi
 
     print_small_sub_heading("Using for loop with else statement:", True)
     display_note("The else block in a for loop executes when the loop completes normally (i.e., not terminated by a break statement")
-    user_input7 = input("Enter a string: ")
+    user_input7 = "Disco"
     output_lines = []
     for char in user_input7:
         if char == 'o':
@@ -155,7 +155,7 @@ for i in range(5):  # range(start, stop, step): generate from start to stop-1 wi
     else:
         output_lines.append("Loop completed without break.")
     show_code_with_output('''# Example of for loop with else statement
-user_input7 = input("Enter a string: ")
+user_input7 = "Disco"
 print("Enter string is: {user_input7})
 for char in "hello":
     if char == 'o':
@@ -169,9 +169,9 @@ else:
 
     print_small_sub_heading("Use of break and continue statements in for loop:", True)
     display_note("The break statement is used to exit the loop prematurely, and the continue statement is used to skip the current iteration.")
-    end_limit = int(input("Enter the range end limit: "))
+    end_limit = 45
     show_code_with_output('''# Demonstrating break and continue in a for loop
-end_limit = int(input("Enter the range end limit: "))
+end_limit = 45
 print("Enter end limit for range is: {end_limit}")
 for i in range({end_limit}):  # showing use of break statement and continue statement
     if(i % 2 == 0):

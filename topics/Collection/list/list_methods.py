@@ -62,11 +62,12 @@ print(f"Count of 2: {numbers.count(2)}")  # Frequency"""
     # 4) Sorting & Reversing
     print_sub_heading("4) Sorting & Reversing")
     display_note("These methods change the order of elements.")
-    display_note("`sort()`: In-place (modifies original list), Returns None, Works with homogeneous types, Stable sort (equal elements retain their original order")
+    display_note("sort(): In-place (modifies original list), Returns None, Works with homogeneous types, ")
+    display_note("Stable sort (equal elements retain their original order)", message_continue=True)
     display_note("Use to sort numbers, strings, or objects by custom rules like length or case-insensitive comparison.")
     display_note("Use `sorted()` instead of sort() when you need to keep the original list unchanged.","tip")
     display_note("'reverse()`: In-place, Returns None, Stable, List-only (Only works on lists, not work in tuples, sets, or strings)")
-    display_note("Use `reversed()` with list() if want a reversed copy without modifying original, or reverse any iterable (strings, tuples, etc.)","tip")
+    display_note("Use reversed() with list() if want a reversed copy without modifying original, or reverse any iterable(strings, tuples, etc.)","tip")
     show_code_with_output("""# sort(key=None, reverse=False)) & Reversing
 nums = [4, 1, 5, 2]
 nums.sort()  # Sort ascending
@@ -90,7 +91,7 @@ print(f"Reversed list: {nums}")"""
     # 5) Copying
     print_sub_heading("5) Copying Lists")
     display_note("Use `copy()` to clone a list without linking it to the original.")
-show_code_with_output("""# Copying Lists
+    show_code_with_output("""# Copying Lists
 original = [10, 20, 30]
 copied = original.copy()
 original.append(40)

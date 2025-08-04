@@ -16,6 +16,5 @@ __pycache__/
 .idea/
 .vscode/
 
-# Output files from your project
-*.html
-*.pdf
+# Output files folder from your project
+Notes/

@@ -15,7 +15,7 @@ def main():
     display_note("Encapsulation hides internal data and exposes it via methods or properties.","note", "🔒")
     display_note("Achieved using private (`__var`) or protected (`_var`) members, getters/setters.", "note", "✅")
     display_note("Public members are accessible from anywhere. Default in Python—no special prefix needed.")
-    display_note("Protected members use a single underscore (_) and signal: 'Internal use only.' Accessible, but discouraged outside subclasses.")
+    display_note("Protected members use single underscore (_) and signal: 'Internal use only' Accessible, but discouraged outside subclasses.")
     display_note("Private members use double underscores (__). Python hides them via name mangling—not true privacy.")
     display_note("Accessing private members is discouraged but possible using name mangling: _ClassName__member.")
     show_code_with_output('''
@@ -94,11 +94,14 @@ def main():
     )
 
     print_sub_heading("3) Class Variables, Instance Variables, and Methods")
-    display_note("Instance variables:  Unique to each object, Defined using 'self.var' inside __init__ or methods, Accessed via 'self.var'.")
-    display_note("Class Variables: Shared among all instances, Defined directly in the class body, Accessed via 'ClassName.var' or 'self.__class__.var'.")
+    display_note("Instance Variables:  Unique to each object, Defined using 'self.var' inside __init__ or methods, Accessed via 'self.var'.")
+    display_note("Class Variables: Shared among all instances, Defined directly in the class body, ")
+    display_note("Accessed via 'ClassName.var' or 'self.__class__.var'.", message_continue=True)
     display_note("Changing a class variable via instance creates a new instance variable—doesn’t affect others.", "warning")
-    display_note("@classmethod: Takes `cls` as first argument. Can access and modify class variables dynamically, and supports alternate constructors and subclass-aware behavior.")
-    display_note("@staticmethod: Takes no `self/cls`, Access class variables(`ClassName.var`) but not instance attributes, not class-aware or dynamic, Behaves like a normal function within class context.")
+    display_note("@classmethod: Takes `cls` as first argument. ")
+    display_note("Can access and modify class variables dynamically, and supports alternate constructors and subclass-aware behavior.", message_continue=True)
+    display_note("@staticmethod: Takes no `self/cls`, Access class variables(`ClassName.var`) ")
+    display_note("but not instance attributes, not class-aware or dynamic, Behaves like a normal function within class context.", message_continue=True)
     show_code_with_output('''
     class User:
         domain = "example.com"      # Class variable

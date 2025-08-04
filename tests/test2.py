@@ -88,13 +88,13 @@ def display_note(message: str, type: str="note", icon: Optional[str]=None, color
     if(message_continue):
         icon_style_str=f"{icon} {type.capitalize()}: "
         icon_style_len=len(icon_style_str)  # calculating combine length of icon, type and message
-        empty_string=icon_style_len*" "+" " # assigning empty string of length calculate above
+        empty_string=(icon_style_len-1)*" " if(type.lower()=="info" or type.lower()=="warning") else (icon_style_len+1)*" "# assigning empty string of length calculate above
         console.print(f"[{style}]{empty_string}{message}[/]") # space + only message
     else:
         console.print(f"[{style}]{icon} {type.capitalize()}: {message}[/]")
 
 
-def imp_note_points(points: str)-> None:
+def imp_note_points(points: str, title: str="Important Points")-> None:
     """
     Prints a stylish important points.
     Args:
@@ -103,7 +103,7 @@ def imp_note_points(points: str)-> None:
     markdown = Markdown(points)
     panel = Panel.fit(
     renderable=markdown,
-    title="Important Points",
+    title=title,
     title_align="left",
     safe_box=True,
     border_style="bold magenta",
@@ -144,26 +144,14 @@ def render_2d_table(data: List[List], title: str="📋 Data Table", inner_border
 
     console.print(table)
 
-imp_note_points('''WORKFLOW  
-Input List: [1, 2, 3, 4, 5]  
-Step-by-step Execution of: reduce(add, [1, 2, 3, 4, 5])                               
-`┌──────┐                                                       `  
-`│Start │─────→  1, 2,     3,     4,     5                      `  
-`└──────┘        ┬  ┬      ┬      ┬      ┬                      `  
-`               a│  │b     │      │      │                      `  
-`                ↓  ↓      │      │      │                      `  
-`            add(1, 2)→ 3  │      │      │                      `  
-`                       ┬  │      │      │                      `  
-`                      a│  │b     │      │                      `  
-`                       ↓  ↓      │      │                      `  
-`                   add(3, 3)→ 6  │      │                      `  
-`                              ┬  │      │                      `  
-`                             a│  │b     │                      `  
-`                              ↓  ↓      |                      `  
-`                          add(6, 4)→ 10 │                      `  
-`                                     ┬  │                      `  
-`                                    a│  │b                     `  
-`                                     ↓  ↓             ┌──────┐ `  
-`                                add(10, 5)→ 15 ──────→│ End  │ `  
-`                                                      └──────┘ `  
-''')
+imp_note_points("""A package is a way to structure Python’s module namespace by using 'dotted module names'.  
+Let's imagine a more complex file structure:  
+***`project/`***  
+***`├── main.py`***  
+***`└── my_app/`***  
+***`    ├── __init__.py`***  
+***`    ├── math_ops.py`***  
+***`    └── text_ops/`***  
+***`        ├── __init__.py`***  
+***`        └── formatting.py`***  
+    """, "Example")

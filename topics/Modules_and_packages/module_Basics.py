@@ -14,12 +14,12 @@ def main():
     # Modules
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("1) Understanding Modules")
-    display_note("A module is a single `.py` file containing functions, classes, and variables. Let's imagine we have the following file structure:", "example")
-    display_note("""
-project/
-├── main.py
-└── string_utils.py
-    """, "info")
+    imp_note_points("""A module is a single `.py` file containing functions, classes, and variables.  
+Let's imagine we have the following file structure:  
+***`project/`***  
+***`├── main.py`***  
+***`└── string_utils.py`***  
+    """, "Example")
 
     print_sub_heading("2) Creating and Importing a Module")
     display_note("You use the `import` keyword to access the code from another module.")
@@ -37,7 +37,8 @@ print(message)'''
 "HELLO WORLD!")
 
     print_sub_heading("3) The `from...import` Statement")
-    display_note("This allows you to import specific functions or classes directly into the current namespace, so you don't have to prefix them with the module name.")
+    display_note("This allows you to import specific functions or classes directly into the current namespace, ")
+    display_note("so you don't have to prefix them with the module name.", message_continue=True)
     show_code_with_output('''# File: string_utils.py remains the same.
 # File: main.py
 from string_utils import shout
@@ -60,7 +61,8 @@ print(message)'''
 "ALIASES ARE COOL!")
 
     print_sub_heading("5) The `__name__` Special Variable")
-    display_note("Every module has a special variable `__name__`. When the module is run directly, `__name__` is set to `'__main__'`. When it's imported, `__name__` is set to the module's filename.")
+    display_note("Every module has a special variable `__name__`. When the module is run directly, `__name__` is set to `'__main__'`. ")
+    display_note("When it's imported, `__name__` is set to the module's filename.", message_continue=True)
     display_note("This allows you to write code that only runs when the file is executed as a script, not when it's imported.", "tip")
     show_code_with_output('''# File: string_utils.py
 def shout(text):

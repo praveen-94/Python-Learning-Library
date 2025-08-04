@@ -22,9 +22,8 @@ def main():
     show_code_with_output("string1 = 'Hello, World!'",string1)
 
     print_sub_heading("Example of taking user input for a string")
-    string2 = input("  Enter a string: ")
+    string2 = "Welcome to python!!"
     show_code_with_output('string2 = input("Enter a string: )"\nprint("Enter String is:", string2)") ','Enter String is: ' + string2)
-    print("Enter String is:", string2)
 
     print_sub_heading("Example of string concatenation")
     concatenated_string = string1 + " " + string2

@@ -90,13 +90,14 @@ def display_note(message: str, type: str="note", icon: Optional[str]=None, color
     if(message_continue):
         icon_style_str=f"{icon} {type.capitalize()}: "
         icon_style_len=len(icon_style_str)  # calculating combine length of icon, type and message
-        empty_string=icon_style_len*" "+" " # assigning empty string of length calculate above
+        # assigning empty string of length calculate above
+        empty_string=(icon_style_len-1)*" " if(type.lower()=="info" or type.lower()=="warning") else (icon_style_len+1)*" "
         console.print(f"[{style}]{empty_string}{message}[/]") # space + only message
     else:
         console.print(f"[{style}]{icon} {type.capitalize()}: {message}[/]")
 
 
-def imp_note_points(points: str)-> None:
+def imp_note_points(points: str, topic: str="Important Points")-> None:
     """
     Prints a stylish important points.
     Args:
@@ -105,7 +106,7 @@ def imp_note_points(points: str)-> None:
     markdown = Markdown(points)
     panel = Panel.fit(
     renderable=markdown,
-    title="Important Points",
+    title=topic,
     title_align="left",
     safe_box=True,
     border_style="bold magenta",
@@ -142,7 +143,7 @@ def show_code_with_output(code_str: str, output_str: str)-> None:
         output_str (str): The output/result of the code.
     """
     #themes: gruvbox-dark, ansi_dark, fruity, monokai, github-dark
-    syntax_panel = Panel(Syntax(code_str, "python", line_numbers=True, theme="gruvbox-dark"), title="🐍 Code", title_align="left", expand=False)
+    syntax_panel = Panel(Syntax(code_str, "python", line_numbers=True, theme="fruity"), title="🐍 Code", title_align="left", expand=False)
     output_panel = Panel(output_str, title="🖨️ Output", title_align="left", highlight=True, expand=False)
     #console.print(Columns([syntax_panel, output_panel], column_first=True))
     console.print(syntax_panel)
@@ -181,7 +182,7 @@ async def create_pdf_from_html(html_filepath: str, pdf_filepath: str)-> None:
             html_uri = absolute_html_path.as_uri() # Convert that absolute path into a proper file:/// URI.
            
             await page.goto(html_uri)  # Go to the local HTML file using the full URI
-            await page.pdf(path=pdf_filepath, print_background=True)  # Generate the PDF
+            await page.pdf(path=pdf_filepath, format="A4", print_background=True)  # Generate the PDF
             await browser.close()   
         console.print(f"[bold bright_green]Successfully exported PDF to '{pdf_filepath}'[/]")
     except Exception as e:

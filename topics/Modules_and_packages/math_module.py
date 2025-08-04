@@ -135,7 +135,8 @@ print(f"Cosine of {{angle_degrees}} degrees is: {{math.cos(angle_radians)}}") ''
 ,
 f'''Sine of {angle_deg_for_trig} degrees is: {math.sin(angle_rad_for_trig)}
 Cosine of {angle_deg_for_trig} degrees is: {math.cos(angle_rad_for_trig)}''')
-    display_note("Note: Due to floating-point inaccuracies, `math.cos(math.radians(90))` might be a very small number close to zero, not exactly 0.0.", "info")
+    display_note("Note: Due to floating-point inaccuracies, ", "info")
+    display_note("`math.cos(math.radians(90))` might be a very small number close to zero, not exactly 0.0.", "info", message_continue=True)
 
 
 if __name__ == "__main__":

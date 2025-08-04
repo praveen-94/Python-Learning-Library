@@ -1,10 +1,8 @@
 # Python Learning Journey
-
 Welcome to my **Python Learning Journey**! This is a personal project where I implement and organize everything I’ve learned during my Python exploration from basic syntax to advanced concepts — through code examples, notes, and utilities.
 
----------------------------------------------------------------------------------------------------------------------------------------
+
 ## 📚 Project Purpose
----------------------------------------------------------------------------------------------------------------------------------------
 This project is designed to:
 - Reinforce my Python skills through practice
 - Organize concepts topic-wise with example scripts
@@ -13,9 +11,8 @@ This project is designed to:
 
 Whether you're a beginner or revisiting Python, you may find the examples useful!
 
----------------------------------------------------------------------------------------------------------------------------------------
+
 ## 🗂️ Project Structure
----------------------------------------------------------------------------------------------------------------------------------------
 ```
 pyCodeNotes/
 ├── .venv/             # Virtual environment (excluded from Git)
@@ -33,9 +30,9 @@ pyCodeNotes/
 |── README.md          # Project overview and instructions
 └── topics.json        # Contains name of topic, subtopic.. and their modules
 ```
----------------------------------------------------------------------------------------------------------------------------------------
+
+
 ## 🧪 How to Run
----------------------------------------------------------------------------------------------------------------------------------------
 1. **Clone the repo or download manually**
 2. **Navigate into the folder**
 3. **Activate virtual environment** (optional but recommended):
@@ -45,15 +42,13 @@ python -m venv venv        # Create (only once)
 venv\Scripts\activate      # Activate (Windows)
 source venv/bin/activate   # Activate (macOS/Linux)
 ```
----------------------------------------------------------------------------------------------------------------------------------------
 4. **Run main.py file**:
----------------------------------------------------------------------------------------------------------------------------------------
 ```bash
 python main.py
 ```
----------------------------------------------------------------------------------------------------------------------------------------
+
+
 ## 📝 Topics Covered
----------------------------------------------------------------------------------------------------------------------------------------
 | Topic                   | ⏳Status        | Description                                      |
 |-------------------------|-----------------|--------------------------------------------------|
 | Basic functionality     | ✅ Done         | Input and print function, Data Types             |
@@ -73,9 +68,8 @@ python main.py
 ------------------------------------------------------------------------------------------------
 Track progress: [`progress.md`](progress.md)
 
----------------------------------------------------------------------------------------------------------------------------------------
+
 ## 🧰 Helpers
----------------------------------------------------------------------------------------------------------------------------------------
 A reusable helper script is included to improve formatting and readability:
 
 ```python
@@ -83,9 +77,9 @@ from helpers.display_helpers import display_note, print_sub_heading
 OR
 from helpers.display_helpers import *
 ```
----------------------------------------------------------------------------------------------------------------------------------------
+
+
 ## 📦 Requirements
----------------------------------------------------------------------------------------------------------------------------------------
 Add external packages (like `rich`, `pytest`), you can track them in:
 ```bash
 requirements.txt
@@ -94,20 +88,18 @@ Install them using:
 ```bash
 pip install -r requirements.txt
 ```
----------------------------------------------------------------------------------------------------------------------------------------
+
+
 ## 🚀 Future Plans
----------------------------------------------------------------------------------------------------------------------------------------
 - Add markdown cheat sheets per topic
 - Turn project into a minimal learning package or blog
 
----------------------------------------------------------------------------------------------------------------------------------------
+
 ## 🙋‍♂️ Contact / Feedback
----------------------------------------------------------------------------------------------------------------------------------------
 If you’re a fellow learner, feel free to use this as a template for your own journey. Feedback or suggestions are always welcome!
 📧 Email: praveenahirwar94@gmail.com  
-📎 GitHub: [your-username-here](https://github.com/your-username-here)
+📎 GitHub: [praveen-94](https://github.com/praveen-94)
 
----------------------------------------------------------------------------------------------------------------------------------------
+
 ## 📄 License
----------------------------------------------------------------------------------------------------------------------------------------
 This project is for personal educational use. You're welcome to use, fork, or extend it.

@@ -45,8 +45,8 @@ except ValueError as e:
     # 2. Re-raising an Exception
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("2. Re-raising an Exception")
-    display_note("Sometimes you want to catch an exception, perform an action (like logging), and then let the exception continue up the call stack.")
-    display_note("A bare `raise` inside an `except` block does this.",message_continue=True)
+    display_note("Sometimes you want to catch an exception, perform an action (like logging), ")
+    display_note("and then let the exception continue up the call stack. A bare `raise` inside an `except` block does this.",message_continue=True)
     show_code_with_output('''# Catching, logging, and re-raising an error
 def process_data(data):
     try:

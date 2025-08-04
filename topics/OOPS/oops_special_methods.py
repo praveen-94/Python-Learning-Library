@@ -19,7 +19,8 @@ def main():
     display_note("These methods control how your objects are created and destroyed.")
 
     print_small_sub_heading("a) __new__(cls, ...)",True)
-    display_note("This is the first method called during object creation. Its job is to create and return a new instance of the class. You rarely need to override it.", "tip")
+    display_note("This is the first method called during object creation. ", "tip")
+    display_note("Its job is to create and return a new instance of the class. You rarely need to override it.", "tip", message_continue=True)
     display_note("Default Behavior: `object.__new__()` handles creating a blank instance of the class.", "example")
     show_code_with_output('''#  __new__(cls, ...)
 class MyClass:
@@ -37,7 +38,8 @@ obj = MyClass()'''
 Initializing the instance...''')
 
     print_small_sub_heading("b) __init__(self, ...)",True)
-    display_note("Called right after `__new__`, this method initializes the newly created instance, often by assigning values to its attributes. It does not return anything.")
+    display_note("Called right after `__new__`, It initializes the newly created instance, often by assigning values to its attributes. ")
+    display_note("It does not return anything.", message_continue=True)
     display_note("Default Behavior: The base `object` class's `__init__` method does nothing.", "example")
     show_code_with_output('''#  __init__(self, ...)
 class Book:
@@ -51,9 +53,10 @@ book = Book("The Hobbit", "J.R.R. Tolkien")'''
 '''Book 'The Hobbit' initialized.''')
 
     print_small_sub_heading("c) __del__(self)",True)
-    display_note("This is the 'destructor'. It's called when an object's reference count drops to zero and it is about to be garbage collected.")
+    display_note("It is 'destructor'. It's called when an object's reference count drops to zero and it is about to be garbage collected.")
     display_note("Default Behavior: The base `object` class's `__del__` method does nothing.", "example")
-    display_note("Its execution is not guaranteed and can be unpredictable. Use it for cleanup tasks, but avoid relying on it for critical operations.", "warning")
+    display_note("Its execution is not guaranteed and can be unpredictable. ", "warning")
+    display_note("Use it for cleanup tasks, but avoid relying on it for critical operations.", "warning", message_continue=True)
     show_code_with_output('''#  __del__(self)
 class FileHandler:
     def __init__(self, filename):
@@ -76,9 +79,10 @@ FileHandler for report.txt is being destroyed.''')
     print_sub_heading("2. String Representation")
     display_note("These methods define how your object is converted to a string.")
     display_note("`__str__` is for creating a user-friendly, readable output for end-users (used by `print()` and `str()`).")
-    display_note("`__repr__` is for creating an unambiguous, developer-focused representation of the object, which should ideally be valid Python code to recreate the object (used by `repr()`).")
+    display_note("`__repr__` is for creating an unambiguous, developer-focused representation of the object, ")
+    display_note("which should ideally be valid Python code to recreate the object (used by `repr()`).", message_continue=True)
     display_note("Default Behavior `__str__`: If not defined, Python falls back to using `__repr__`.", "tip")
-    display_note("Default Behavior `__repr__`: If neither is defined, it shows the class name and memory address (e.g., `<Book object at 0x...a50>`).", "example")
+    display_note("Default Behavior `__repr__`: If neither is defined, it shows the class name and memory address(<Book object at 0x...a50>)", "example")
     show_code_with_output('''#  __str__(self) vs. __repr__(self)
 class Book:
     def __init__(self, title, author):
@@ -106,7 +110,8 @@ Book(title='1984', author='George Orwell')''')
     print_sub_heading("3. Comparison Methods")
     display_note("These methods allow you to use comparison operators like `==`, `!=`, `<`, `>` on your objects.")
     display_note("`__eq__` implements the equality operator (`==`). `__ne__` implements the inequality operator (`!=`).")
-    display_note("Default Behavior: If not defined, `__eq__` checks if two references point to the exact same object in memory (identity check, like the `is` operator). `__ne__` is the logical opposite.", "example")
+    display_note("Default Behavior: If not defined, `__eq__` checks if two references point to the exact same object in memory ", "example")
+    display_note("identity check, like the `is` operator). `__ne__` is the logical opposite.)", "example", message_continue=True)
     show_code_with_output('''#  __eq__(self, other) and __ne__(self, other)
 class Person:
     def __init__(self, name, age):
@@ -163,7 +168,8 @@ print(f"{v1} + {v2} = {v3}")'''
     display_note("These methods customize what happens when you get, set, or delete an object's attributes.")
 
     print_small_sub_heading("a) __getattr__(self, name)",True)
-    display_note("This method is called ONLY when an attribute lookup fails (i.e., the attribute doesn't exist). It's a great way to provide a default value or custom behavior for missing attributes.")
+    display_note("This method is called ONLY when an attribute lookup fails (i.e., the attribute doesn't exist). ")
+    display_note("It's a great way to provide a default value or custom behavior for missing attributes.", message_continue=True)
     display_note("Default Behavior: If not defined, accessing a non-existent attribute raises an `AttributeError`.", "example")
     show_code_with_output('''# __getattr__(self, name)
 class DynamicAttributes:
@@ -179,7 +185,7 @@ Attribute 'another_one' does not exist!''')
 
 
     print_small_sub_heading("b) __setattr__(self, name, value)",True)
-    display_note("This method is called every time you assign a value to an attribute. Be careful when overriding it to avoid infinite recursion.")
+    display_note("It is called every time you assign a value to an attribute. Be careful when overriding it to avoid infinite recursion.")
     display_note("Default Behavior: The default implementation sets the attribute's value in the object's internal dictionary (`__dict__`).", "example")
     show_code_with_output('''# __setattr__(self, name, value)
 class Logger:
@@ -244,7 +250,8 @@ print(f"The result is: {result}")'''
     # Context Managers
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("8. Context Managers (with statement)")
-    display_note("These methods allow your object to be used with the `with` statement, which is great for managing resources like files or network connections.")
+    display_note("These methods allow your object to be used with the `with` statement,")
+    display_note("which is great for managing resources like files or network connections.", message_continue=True)
     display_note("`__enter__` is called when entering the `with` block. It should return the resource to be managed.")
     display_note("`__exit__` is called when exiting the `with` block, even if an error occurred. It's used for cleanup.")
     display_note("Default Behavior: If not defined, the object cannot be used in a `with` statement and will raise an `AttributeError`.", "example")

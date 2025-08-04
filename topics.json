@@ -292,42 +292,42 @@
      {"title": "Introduction to Python Modules",
       "description": "Covers the basics of Python modules (a single .py file). Explains how to use `import`, `from...import`, and aliases (`as`) to reuse code and manage namespaces.",
       "tags": ["module", "import", "from", "as", "namespace", ".py file", "code reuse", "script"],
-      "module": "topics.modules_packages.module_basics"
+      "module": "topics.Modules_and_packages.module_basics"
     },
     {"title": "Introduction to Python Packages",
       "description": "Explains the fundamentals of Python packages, which are directories of modules. Covers the role of `__init__.py` and how packages help organize large projects.",
       "tags": ["package", "module", "import", "organization", "directory", "namespace", "__init__.py"],
-      "module": "topics.modules_packages.package_basics"
+      "module": "topics.Modules_and_packages.package_basics"
     },
     { "title": "The `os` Module",
       "description": "Demonstrates how to interact with the operating system using the `os` module. Covers path manipulation, directory operations (`listdir`, `mkdir`), and environment variables.",
       "tags": ["os", "operating system", "file system", "directory", "path", "getcwd", "listdir", "mkdir", "environ"],
-      "module": "topics.modules_packages.os_module_examples"
+      "module": "topics.Modules_and_packages.os_module"
     },
     {"title": "Modern Paths with `pathlib`",
       "description": "Explains the modern, object-oriented way to handle filesystem paths using the `pathlib` module, which is the recommended alternative to `os.path`.",
       "tags": ["pathlib", "path", "object-oriented", "file system", "Path", "modern", "os.path", "directory"],
-      "module": "topics.modules_packages.pathlib_module_examples"
+      "module": "topics.Modules_and_packages.pathlib_module"
     },
     {"title": "The `random` Module",
       "description": "Covers how to generate pseudo-random numbers and perform random operations using the `random` module. Includes examples for `randint`, `choice`, and `shuffle`.",
       "tags": ["random", "rng", "pseudo-random", "randint", "choice", "shuffle", "random number", "seed"],
-      "module": "topics.modules_packages.random_module_examples"
+      "module": "topics.Modules_and_packages.random_module"
     },
     {"title": "Regular Expressions: The `re` Module",
       "description": "An introduction to regular expressions for pattern matching in strings. Covers the core functions of the `re` module, including `search`, `match`, `findall`, and `sub`.",
       "tags": ["re", "regex", "regular expression", "pattern matching", "search", "match", "findall", "sub", "string"],
-      "module": "topics.modules_packages.re_module_examples"
+      "module": "topics.Modules_and_packages.regex_module"
     },
     {"title": "The `math` Module",
       "description": "Explores the built-in `math` module, which provides access to common mathematical functions (`sqrt`, `pow`, `ceil`, `floor`) and constants (`pi`, `e`).",
       "tags": ["math", "mathematics", "sqrt", "pow", "ceil", "floor", "pi", "constants", "trigonometry"],
-      "module": "topics.modules_packages.math_module_examples"
+      "module": "topics.Modules_and_packages.math_module"
     },
     {"title": "The `datetime` Module",
       "description": "Covers how to work with dates, times, and time differences using the `datetime` module. Includes examples for `date`, `time`, `datetime`, and `timedelta` objects.",
       "tags": ["datetime", "date", "time", "timedelta", "timezone", "strftime", "strptime", "formatting"],
-      "module": "topics.modules_packages.datetime_module_examples"
+      "module": "topics.Modules_and_packages.date_time_module"
     }
    ]
   }

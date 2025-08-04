@@ -40,12 +40,16 @@ def handle_menu(level_name, items):
                             module_path = Path(mod.__file__)
                             notes_dir = module_path.parent / "Notes"
                             notes_dir.mkdir(parents=True, exist_ok=True)
+                            html_dir = notes_dir / "HTMLs"
+                            html_dir.mkdir(parents=True, exist_ok=True)
                             module_name = module_path.stem  # Gets the filename without the .py extension
-                            html_filepath = notes_dir / f"{module_name}.html"
-                            export_output_to_html("githubdark", str(html_filepath))
+                            html_filepath = html_dir / f"{module_name}.html"
+                            export_output_to_html("fruity", str(html_filepath))
 
                             if Confirm.ask("\n[bold yellow]The HTML file was created. Do you want to convert it to a PDF?[/]"):
-                                pdf_filepath = notes_dir / f"{module_name}.pdf"
+                                pdf_dir = notes_dir / "PDFs"
+                                pdf_dir.mkdir(parents=True, exist_ok=True)
+                                pdf_filepath = pdf_dir / f"{module_name}.pdf"
                                 asyncio.run(create_pdf_from_html(str(html_filepath), str(pdf_filepath)))
                     except Exception as e:
                         print(f"❌ Failed to run {selected['module']}: {e}")

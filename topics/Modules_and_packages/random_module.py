@@ -114,7 +114,8 @@ f"Random score: {rand_uniform}")
     # 4. Reproducibility with Seeding
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("4. Reproducibility with Seeding")
-    display_note("The pseudo-random generator can be initialized with a 'seed' value. Using the same seed will produce the exact same sequence of 'random' numbers every time.")
+    display_note("The pseudo-random generator can be initialized with a 'seed' value. ")
+    display_note("Using the same seed will produce the exact same sequence of 'random' numbers every time.")
     display_note("This is extremely useful for debugging, testing, and creating reproducible simulations.", "example")
     
     # --- Logic for the output ---

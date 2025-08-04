@@ -1,9 +1,9 @@
 # ✅ My Python Learning Tracker
----------------------------------------------------------------------------------------------------------------------------------------
 This file tracks the progress of my Python learning journey by topic.
+---------------------------------------------------------------------------------------------------------------------------------------
+
 
 ## 📌 Topics
----------------------------------------------------------------------------------------------------------------------------------------
 - [x] Data Types and Variable
 - [x] Input, Output, Print functions
 - [x] Operators
@@ -15,4 +15,5 @@ This file tracks the progress of my Python learning journey by topic.
 - [x] Object-Oriented Programming (OOP)
 - [x] Modules and Packages
 - [x] Error Handling
-- [ ] Advanced Topics (Decorators, Generators, etc.)
+- [x] Advanced Topics (Decorators, Generators, etc.)
+---------------------------------------------------------------------------------------------------------------------------------------
