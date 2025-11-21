@@ -62,7 +62,10 @@ def get_terminal_theme(name: str) -> TerminalTheme:
         return FRUITY
     elif name == "githubdark":
         return GITHUB_DARK
+    elif name == "monokai":
+        return getattr(TerminalThemes,name.upper(),TerminalThemes.MONOKAI)
+    elif name == "default":
+        return TerminalThemes.DEFAULT_TERMINAL_THEME
     else:
-        theme_object = getattr(TerminalThemes,name.upper(),TerminalThemes.MONOKAI)
-        console.print(f"[bold red]'{name}' theme is not defined, Checking if it is match to any predefined theme, if not using MONOKOI theme[/bold red]")
-        return theme_object
+        console.print(f"[bold red]'{name}' theme is not defined, Checking if it is match to any predefined theme, if not using DEFAULT theme[/bold red]")
+        return TerminalThemes.DEFAULT_TERMINAL_THEME 

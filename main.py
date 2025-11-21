@@ -2,7 +2,6 @@ from helpers.display_utils import export_output_to_html, create_pdf_from_html
 from rich.prompt import Confirm
 from pathlib import Path
 import importlib
-import asyncio
 import json
 
 def clear_screen():
@@ -11,7 +10,7 @@ def clear_screen():
 def pause():
     input("\nPress Enter to continue...")
 
-def handle_menu(level_name, items):
+def handle_menu(level_name, items, path=""):
     while True:
         clear_screen()
         print(f"📚 {level_name}:")
@@ -25,12 +24,19 @@ def handle_menu(level_name, items):
             choice = int(choice)
             if 1 <= choice <= len(items):
                 selected = items[choice - 1]
+                new_path = f"{path}.{choice}" if path else str(choice)
+
                 if "subtopics" in selected:
-                    handle_menu(selected["title"], selected["subtopics"])
+                    handle_menu(selected["title"], selected["subtopics"], new_path)
+
                 elif "module" in selected:
                     try:
                         mod = importlib.import_module(selected["module"])
-                        mod.main()
+                        
+                        if hasattr(mod, "main"):
+                            mod.main(new_path)
+                        else:
+                            print(f"⚠️ Module {selected['module']} has no main()")
 
                         if Confirm.ask("\n[bold yellow]Do you want to export this output to an HTML file?[/]"):
                             if mod.__file__ is None:
@@ -42,20 +48,21 @@ def handle_menu(level_name, items):
                             notes_dir.mkdir(parents=True, exist_ok=True)
                             html_dir = notes_dir / "HTMLs"
                             html_dir.mkdir(parents=True, exist_ok=True)
-                            module_name = module_path.stem  # Gets the filename without the .py extension
+                            module_name = module_path.stem
                             html_filepath = html_dir / f"{module_name}.html"
-                            export_output_to_html("fruity", str(html_filepath))
+                            export_output_to_html("default", str(html_filepath))
 
                             if Confirm.ask("\n[bold yellow]The HTML file was created. Do you want to convert it to a PDF?[/]"):
                                 pdf_dir = notes_dir / "PDFs"
                                 pdf_dir.mkdir(parents=True, exist_ok=True)
                                 pdf_filepath = pdf_dir / f"{module_name}.pdf"
-                                asyncio.run(create_pdf_from_html(str(html_filepath), str(pdf_filepath)))
+                                create_pdf_from_html(str(html_filepath), str(pdf_filepath))
                     except Exception as e:
                         print(f"❌ Failed to run {selected['module']}: {e}")
                         pause()
                 else:
                     print("⚠️ No valid subtopic/module found.")
+
             elif choice == len(items)+1:
                 return
             elif choice == len(items)+2:

@@ -1,7 +1,7 @@
 from helpers.display_utils import *
 
-def main():
-    print_heading("Sets")
+def main(topic_number: int):
+    print_heading("Sets", topic_number)
     imp_note_points("""IMP Points
 - Sets are unordered collections of unique items.
 - Implemented using hash tables → average time complexity of O(1) for add, remove, and lookup.
@@ -15,8 +15,12 @@ def main():
 - A set can be created using literals, constructor, from iterable, or comprehension.
 - Frozenset is the immutable version of a set (cannot be modified).""")
 
+    #--------------------------------------------------------------------------------------------------
+    # 1) Creating Sets
+    #--------------------------------------------------------------------------------------------------
     print_sub_heading("1) Creating Sets")
-    show_code_with_output("""# Creating a set from a list
+    display_note("An empty set must be created using set(), Not by {} because {} creates an empty dictionary.", "warning")
+    code1 = """# Creating a set from a list
 set1 = {1, 2, 3, 4, 5}
 print(f"Set1 (by Literal): {set1}")
 
@@ -46,42 +50,51 @@ print(f"Squared Set by comprehension: {squared_set}")
 
 # Creating a frozenset
 frozen = frozenset([1, 2, 3])
-print(f"Frozen Set: {frozen}")""",
-"""Set1 (by Literal): {1, 2, 3, 4, 5}
-Set2 (by Constructor): {3, 4, 5, 6}
-Empty Set (by set()): set()
-Empty Set from list: set()
-Empty Set from tuple: set()
-Empty Set from string: set()
-Character Set: {'e', 'h', 'l', 'o'}
-Squared Set by comprehension: {1, 4, 9, 16, 25}
-Frozen Set: frozenset({1, 2, 3})""")
-    display_note("An empty set must be created using set(), Not by {} because {} creates an empty dictionary.", "warning")
+print(f"Frozen Set: {frozen}")
+#-------------------------------------------------------#"""
+    output1 = run_code_snippet(code1)
+    show_code_with_output(code1, output1)
 
 
+    #--------------------------------------------------------------------------------------------------
+    # 2) Accessing Elements
+    #--------------------------------------------------------------------------------------------------
     print_sub_heading("2) Accessing Elements")
     display_note("You cannot access elements by index since sets are unordered.")
-    show_code_with_output("""# Using for loop to access all elements
+    code2 = """# Using for loop to access all elements
+set1 = {1, 2, 3, 4, 5}
 for item in set1:
-    print(item, end=", ")""",
-"1, 2, 3, 4, 5")
+    print(item, end=", ")
+#-------------------------#"""
+    output2 = run_code_snippet(code2)
+    show_code_with_output(code2, output2)
 
 
+    #--------------------------------------------------------------------------------------------------
+    # 3) Adding Elements
+    #--------------------------------------------------------------------------------------------------
     print_sub_heading("3) Adding Elements")
     display_note("You can use add() for a single element and update() for multiple.")
-    show_code_with_output("""# Adding an element
+    code3 = """# Adding an element
+set1 = {1, 2, 3, 4, 5}
 set1.add(6)
 print(f"After add: {set1}")
 
 # Adding multiple elements
 set1.update([7, 8, 9])
-print(f"After update: {set1}")""",
-"After add: {1, 2, 3, 4, 5, 6}\nAfter update: {1, 2, 3, 4, 5, 6, 7, 8, 9}")
+print(f"After update: {set1}")
+#------------------------------#"""
+    output3 = run_code_snippet(code3)
+    show_code_with_output(code3, output3)
 
 
+    #--------------------------------------------------------------------------------------------------
+    # 4) Removing Elements
+    #--------------------------------------------------------------------------------------------------
     print_sub_heading("4) Removing Elements")
     display_note("Use remove() if you're sure the item exists, discard() if not sure. pop() removes an arbitrary element.")
-    show_code_with_output("""# Remove an element
+    code4 = """# Remove an element
+set1 = {1, 2, 3, 4, 5}
 set1.remove(4)
 print(f"After remove(4): {set1}")
 
@@ -96,5 +109,7 @@ print(f"After pop: {set1}")
 
 # Clear all elements
 set1.clear()
-print(f"After clear: {set1}")""",
-"After remove(4): {1, 2, 3, 5, 6, 7, 8, 9}\nAfter discard(100): {1, 2, 3, 5, 6, 7, 8, 9}\nPopped element: 1\nAfter pop: {2, 3, 5, 6, 7, 8, 9}\nAfter clear: set()")
+print(f"After clear: {set1}")
+#------------------------------------------------------#"""
+    output4 = run_code_snippet(code4)
+    show_code_with_output(code4, output4)

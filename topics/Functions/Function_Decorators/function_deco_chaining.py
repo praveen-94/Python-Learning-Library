@@ -1,22 +1,20 @@
 from helpers.display_utils import *
 
-def main():
-    print_heading("Chaining Decorators in Python (Deep Dive)")
+def main(topic_number: int):
+    print_heading("Chaining Decorators in Python (Deep Dive", topic_number)
 
-    imp_note_points("""
-**Chaining Decorators:**  
+    imp_note_points("""***Chaining Decorators:***  
 *Applying multiple decorators to a function or method. Allows you to wrap a function with several layers of behavior (logging, timing, validation, etc.)*  
 - *They’re applied from the closest to the function outward.*  
-- *The order matters: `@d1`, then `@d2` means `f = d1(d2(f))`!*  
-- *Used for building complex, reusable compositions elegantly.*  
-""")
+- *The order matters: **@d1**, then **@d2** means **f = d1(d2(f))!***  
+- *Used for building complex, reusable compositions elegantly.*""")
 
     # -------------------------------------------------------------------------------
     # 1. Basic Chaining: Two Decorators
     # -------------------------------------------------------------------------------
     print_sub_heading("1. Basic Example: Two Decorators")
     display_note("Decorators are applied from bottom upward. The one closest to the function is innermost (wraps first).", "info")
-    show_code_with_output('''# Two Decorators
+    code1 = '''# Two Decorators
 def deco_one(func):
     def wrapper(*args, **kwargs):
         print("deco_one: before")
@@ -39,23 +37,18 @@ def greet():
     print("Hello!")
 
 greet()
-'''
-,
-'''deco_one: before
-deco_two: before
-Hello!
-deco_two: after
-deco_one: after'''
-    )
+#------------------------------------------#'''
+    output1 = run_code_snippet(code1)
+    show_code_with_output(code1, output1)
     display_note("First, `deco_two` wraps `greet()`, then `deco_one` wraps that result. Innermost to outermost: greet → deco_two → deco_one.", "tip")
 
     # -------------------------------------------------------------------------------
     # 2. Chaining with Arguments, Return Values, and Execution Order
     # -------------------------------------------------------------------------------
     print_sub_heading("2. Chaining Decorators (with Args/Return, Order Demo)")
-    display_note("Each decorator receives the function returned by the next one below it.", "warning")
-    display_note("All wrappers typically pass through *args/**kwargs, and can also manipulate output.", "warning", message_continue=True)
-    show_code_with_output('''# With Args/Return, Order Demo
+    display_note("""Each decorator receives the function returned by the next one below it.
+All wrappers typically pass through *args/**kwargs, and can also manipulate output.""", "warning")
+    code2 = '''# With Args/Return, Order Demo
 def star(func):
     def wrapper(*args, **kwargs):
         print("*****")
@@ -85,15 +78,9 @@ def message(msg):
     print(msg)
 
 message("Decorators chain!")
-'''
-,
-'''*****
-+++++
------
-Decorators chain!
------
-+++++'''
-    )
+#--------------------------------------------#'''
+    output2 = run_code_snippet(code2)
+    show_code_with_output(code2, output2)
     display_note("Order: @dash (innermost), then @plus, then @star (outermost). So output is: star → plus → dash → [function body] → dash → plus → star.", "example")
 
     # -------------------------------------------------------------------------------
@@ -101,7 +88,7 @@ Decorators chain!
     # -------------------------------------------------------------------------------
     print_sub_heading("3. Chaining Parameterized Decorators")
     display_note("Even decorators with their own arguments (parameterized) can be chained, but each must add another level of function nesting.", "info")
-    show_code_with_output('''# Chaining with Parameterized (Args) Decorators
+    code3 = '''# Chaining with Parameterized (Args) Decorators
 def repeat(n):
     def decorator(func):
         def wrapper(*args, **kwargs):
@@ -126,27 +113,15 @@ def hello():
     print("Hi!")
 
 hello()
-'''
-,
-'''Run 1:
-##########
-Hi!
-##########
-Run 2:
-##########
-Hi!
-##########
-Run 3:
-##########
-Hi!
-##########'''
-    )
+#---------------------------------------------#'''
+    output3 = run_code_snippet(code3)
+    show_code_with_output(code3, output3)
 
     # -------------------------------------------------------------------------------
     # 4. Practical: Logging, Timing, and Validation Together
     # -------------------------------------------------------------------------------
     print_sub_heading("4. Real World: Logging, Timing, Checking in a Chain")
-    show_code_with_output('''import time
+    code4 = '''import time
 from functools import wraps
 
 def log(func):
@@ -182,18 +157,16 @@ def factorial(x):
     return 1 if x==0 else x*factorial(x-1)
 
 print(factorial(4))
-'''
-,
-'''[LOG] Calling factorial
-[TIME] factorial took 0.4050s
-24'''
-    )
+#--------------------------------------------------------------#'''
+    output5 = run_code_snippet(code4)
+    show_code_with_output(code4, output5)
 
     imp_note_points("""**Key Insights:**  
 - Decorators always apply inside–out, top to bottom.  
 - Good design: each decorator should call and return the next layer, never break the chain.  
 - Use @functools.wraps on wrappers to keep function meta-info for all chains!
 - Complex behaviors can be built up via composition, not inheritance.""")
+    
 
 if __name__ == "__main__":
-    main()
+    main(1)

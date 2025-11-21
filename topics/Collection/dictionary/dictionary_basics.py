@@ -3,8 +3,8 @@ from helpers.display_utils import *
 # --------------------------------------------------------
 # 📘 Python Dictionaries: Basic Concepts
 # --------------------------------------------------------
-def main():
-    print_heading("Python Dictionaries Basic Concepts")
+def main(topic_number: int):
+    print_heading("Python Dictionaries Basic Concepts", topic_number)
     imp_note_points("""IMP Points
 - Dictionaries are implemented using hash tables internally.
 - Because of hashing, search, insert, and delete operations are typically done in constant time O(1).
@@ -18,10 +18,12 @@ def main():
 - Keys are used for fast lookup, not index-based like lists.
 - Supports nesting, making it useful for structured or hierarchical data.""")
     
-# --------------------------------------------------
+    # ------------------------------------------------------------------------------------------
+    # 1) Creating Dictionaries
+    # ------------------------------------------------------------------------------------------
     print_sub_heading("1) Creating Dictionaries")
-    display_note("Dictionaries can be created using curly braces, dict() constructor, fromkeys(), zip() and by copying existing dict.")
-    show_code_with_output("""# Creating Dictionaries
+    display_note("Dictionaries can be created using {}, dict() constructor, fromkeys(), zip() and by copying existing dict.")
+    code1 = """# Creating Dictionaries
 # Using literal
 dict1 = {'a': 1, 'b': 2}
                           
@@ -42,18 +44,33 @@ print(f"Showing dictionary created by Literal: {dict1}")
 print(f"Showing dictionary created by Constructor: {dict2}")
 print(f"Showing dictionary created From keys: {dict3}")
 print(f"Showing dictionary created From zip: {dict4}")
-print(f"Showing dictionary created by Copied: {copied}")"""
-,
-"""Showing dictionary created by Literal: {'a': 1, 'b': 2}
-Showing dictionary created by Constructor: {'name': 'Alice', 'age': 30}
-Showing dictionary created From keys: {'x': 0, 'y': 0}
-Showing dictionary created From zip: {'k1': 100, 'k2': 200}
-Showing dictionary created Copied: {'id': 1, 'lang': 'Python'}""")
+print(f"Showing dictionary created by Copied: {copied}")
+#------------------------------------------------------------#"""
+    output1 = run_code_snippet(code1)
+    show_code_with_output(code1, output1)
 
-# --------------------------------------------------
-    print_sub_heading("2) Accessing Dictionary Values")
+    # ------------------------------------------------------------------------------------------
+    # 2) Adding or Updating Values
+    # ------------------------------------------------------------------------------------------
+    print_sub_heading("2) Adding or Updating Values")
+    display_note("Assigning to a key adds it if it doesn't exist, or updates it if it does. You can also use update().")
+    code2 = """# Adding or Updating Values
+student = {'name': 'Alice'}
+print(f"Before update: {student}")
+student['age'] = 22  # Add
+student['name'] = 'Eve'  # Update
+student.update({'city': 'Delhi', 'grade': 'A'})  # Merge
+print(f"Updated student: {student}")
+#---------------------------------------------------------#"""
+    output2 = run_code_snippet(code2)
+    show_code_with_output(code2, output2)
+
+    # ------------------------------------------------------------------------------------------
+    # 3) Accessing Dictionary Values
+    # ------------------------------------------------------------------------------------------
+    print_sub_heading("3) Accessing Dictionary Values")
     display_note("Access values using square brackets, get(), and setdefault(). The get() and setdefault() are safer.")
-    show_code_with_output("""# Accessing Dictionary Values
+    code3 = """# Accessing Dictionary Values
 info = {'name': 'Bob', 'age': 25}
 print(f"Fetching value of key 'name' Using []: {info['name']}") # give error if key not exist 
 print(f"Fetching value of key 'age' Using get(): {info.get('age')}") # give none if key not exist
@@ -64,45 +81,37 @@ print(f"Fetching value of key 'name' Using get() with default: {info.get('name',
 print(f"Fetching value of key 'height' Using get() with default: {info.get('height', 'Not specified')}")
                           
 # setdefault() set value if enter keys value not exist
-print(f"Fetching value of key 'name' Using setdefault() for non-existing key: {info.setdefault('name', 'Unknown')}")
-print(f"Fetching value of key 'name' Using setdefault() for non-existing key: {info.setdefault('city', 'Unknown')}")
-print(f"After setdefault(): {info}")"""
-,
-"""Fetching value of key 'name' Using []: Bob
-Fetching value of key 'age' Using get(): 25
-Fetching value of key 'height' Using get(): None
-Fetching value of key 'name' Using get() with default: Bob
-Fetching value of key 'height' Using get() with default: Not specified
-Fetching value of key 'name' Using setdefault() for non-existing key: Bob
-Fetching value of key 'name' Using setdefault() for non-existing key: Unknown
-After setdefault(): {'name': 'Bob', 'age': 25, 'city': 'Unknown'}""")
+print("Fetching value of key 'name' Using setdefault() for non-existing key: ", end="")
+print(f"{info.setdefault('name', 'Unknown')}")
+print("Fetching value of key 'name' Using setdefault() for non-existing key: ", end="")
+print(f"{info.setdefault('city', 'Unknown')}")
+print(f"After setdefault(): {info}")
+#---------------------------------------------------------------------------------------------------------#"""
+    output3 = run_code_snippet(code3)
+    show_code_with_output(code3, output3)
 
-# --------------------------------------------------
-    print_sub_heading("3) Adding or Updating Values")
-    display_note("Assigning to a key adds it if it doesn't exist, or updates it if it does. You can also use update().")
-    show_code_with_output("""# Adding or Updating Values
-student = {'name': 'Alice'}
-print("Before update:", {student})
-student['age'] = 22  # Add
-student['name'] = 'Eve'  # Update
-student.update({'city': 'Delhi', 'grade': 'A'})  # Merge
-print(f"Updated student: {student}")"""
-,
-"Before update: {'name': 'Alice'}\nUpdated student: {'name': 'Eve', 'age': 22, 'city': 'Delhi', 'grade': 'A'}")
-
-# --------------------------------------------------
+    # ------------------------------------------------------------------------------------------
+    # 4) Removing Items from Dictionary
+    # ------------------------------------------------------------------------------------------
     print_sub_heading("4) Removing Items from Dictionary")
     display_note("You can remove items using del, pop(), popitem(), or clear().")
-    show_code_with_output("""# Removing Items from Dictionary
+    code4 = """# Removing Items from Dictionary
 data = {'name': 'John', 'age': 28, 'country': 'India'}
 del data['country']  # Remove specific key, give keyError if key not exist
 
-# Pop() remove specific, and return its value, if not exist return none (default)
+# Pop() remove specific, and return its value
+# default (optional): A fallback value if the key doesn’t exist.
+# If not provided and the key is missing, Python raises a KeyError.
 removed1 = data.pop('age')
-print(f"Removed 'age': {removed1}, Now dictionary content is: {data}")   
-removed2 = data.pop('height')
-print(f"Removed 'height': {removed2}, Now dictionary content is: {data}")
-removed3 = data.pop('city',"NA")
+print(f"Removed 'age': {removed1}, Now dictionary content is: {data}") 
+
+try:
+    removed2 = data.pop('height')
+    print(f"Removed 'height': {removed2}, Now dictionary content is: {data}")
+except KeyError:
+    print(f"KeyError: 'height' not found")
+
+removed3 = data.pop('city',"Not Present")
 print(f"Removed 'city': {removed3}, Now dictionary content is: {data}")
 
 # Popitem() remove and return last inserted key-value as tuple, give keyError if empty
@@ -110,29 +119,31 @@ last = data.popitem()  # Pop last item
 print(f"Last popped item: {last}, Now dictionary content is: {data}")
                           
 data.clear()  # Clear all
-print(f"After clear(): {data}")"""
-,
-"""Removed 'age': 28, Now dictionary content is: {'name': 'John'}
-Removed 'city': NA, Now dictionary content is: {'name': 'John'}
-Last popped item: ('name', 'John'), Now dictionary content is: {}
-After clear(): {}""")
+print(f"After clear(): {data}")
+#-----------------------------------------------------------------------------------------#"""
+    output4 = run_code_snippet(code4)
+    show_code_with_output(code4, output4)
     
-# ----------------------------------------
+    # ------------------------------------------------------------------------------------------
+    # 5) fetching keys(), values(), items()
+    # ------------------------------------------------------------------------------------------
     print_sub_heading("5) fetching keys(), values(), items()")
     display_note("Returns view objects: keys(), values(), and items() can be converted to lists for easy viewing.")
-    show_code_with_output("""# keys(), values(), items()
+    code5 = """# keys(), values(), items()
 d = {'name': 'Alice', 'age': 30}
 print(f"Keys: {list(d.keys())}")
 print(f"Values: {list(d.values())}")
-print(f"Items: {list(d.items())}")"""
-,
-"Keys: ['name', 'age']\nValues: ['Alice', 30]\nItems: [('name', 'Alice'), ('age', 30)]")
-    
-# ----------------------------------------
+print(f"Items: {list(d.items())}")
+#------------------------------------#"""
+    output5 = run_code_snippet(code5)
+    show_code_with_output(code5, output5)
 
+    # ------------------------------------------------------------------------------------------
+    # 6) Iterating Through Dictionary
+    # ------------------------------------------------------------------------------------------
     print_sub_heading("6) Iterating Through Dictionary")
     display_note("You can iterate through dictionary keys, values, or key-value pairs using a for loop.")
-    show_code_with_output("""# Iterating Through Dictionary
+    code6 = """# Iterating Through Dictionary
 student = {'name': 'Alice', 'age': 22, 'grade': 'A'}
 
 print("Iterating through keys")
@@ -147,21 +158,24 @@ print()
 
 print("Iterating through key-value pairs")
 for key, value in student.items():
-    print(f"{key} -> {value}", end=" | ")"""
-,
-"Iterating through keys\nKey: name | Key: age | Key: grade | \nIterating through values\nValue: Alice | Value: 22 | Value: A | \nIterating through key-value pairs\nname -> Alice | age -> 22 | grade -> A | ")
+    print(f"{key} -> {value}", end=" | ")
+#--------------------------------------------------------#"""
+    output3 = run_code_snippet(code6)
+    show_code_with_output(code6, output3)
 
-# ----------------------------------------
-
+    # ------------------------------------------------------------------------------------------
+    # 7) Dictionary Comprehension
+    # ------------------------------------------------------------------------------------------
     print_sub_heading("7) Dictionary Comprehension")
     display_note("Dictionary comprehension provides a concise way to create dictionaries from iterables.")
-    show_code_with_output("""# Creating a dictionary of squares
+    code7 = """# Creating a dictionary of squares
 squares = {x: x**2 for x in range(1, 6)}
 print(f"Squares: {squares}")
 
 # Filtering dictionary to keep only even values
 original = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 filtered = {k: v for k, v in original.items() if v % 2 == 0}
-print(f"Filtered (even values): {filtered}")"""
-,
-"Squares: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}\nFiltered (even values): {'b': 2, 'd': 4}")
+print(f"Filtered (even values): {filtered}")
+#------------------------------------------------------------#"""
+    output7 = run_code_snippet(code7)
+    show_code_with_output(code7, output7)

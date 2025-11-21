@@ -18,3 +18,5 @@ __pycache__/
 
 # Output files folder from your project
 Notes/
+output_dump/
+test*.py

@@ -1,25 +1,24 @@
 from helpers.display_utils import *
 
-def main():
-    print_heading("Class Decorators: Decorating Classes Themselves")
+def main(topic_number: int):
+    print_heading("Class Decorators: Decorating Classes Themselves", topic_number)
 
     imp_note_points("""
-- it is a function that takes a class object as an argument, optionally modifies it, and returns it (or a new class).
+- It is a function that takes a class object as an argument, optionally modifies it, and returns it (or a new class).
 - Unlike function decorators that wrap functions, these decorators operate at the class level.
 - They are used to add or modify methods, automatically register classes, enforce rules, or apply enhancements.
-- The syntax is the same `@decorator` above a class definition, but the decorator receives a class instead of a function.
-    """)
+- The syntax is the same ___@decorator___ above a class definition, but the decorator receives a class instead of a function.""")
 
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     # 1. Simple Example: Adding a __repr__ Method Dynamically
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("1. Adding a __repr__ Method Dynamically")
-    show_code_with_output('''# Simple Example
+    code1 = '''# Simple Example
 def add_repr(cls):
     # Adds a __repr__ method if not defined
     if '__repr__' not in cls.__dict__:
         def __repr__(self):
-            attrs = ', '.join(f"{k}={{self.__dict__[k]!r}}" for k in self.__dict__)
+            attrs = ', '.join(f"{k}={self.__dict__[k]!r}" for k in self.__dict__)
             return f"<{cls.__name__}({attrs})>"
         cls.__repr__ = __repr__
     return cls
@@ -31,21 +30,21 @@ class Person:
         self.age = age
 
 p = Person("Alice", 30)
-print(repr(p))'''
-,
-'''<Person(name='Alice', age=30)>''')
+print(repr(p))
+#--------------------------------------------------------------------------------------#'''
+    output1 = run_code_snippet(code1)
+    show_code_with_output(code1, output1)
 
     display_note("""
-        - The decorator `add_repr` receives the class `Person` as `cls`.
-        - It checks if `__repr__` is already defined. If not, it adds a new `__repr__` method dynamically.
-        - When printing `repr(p)`, the newly added method is used.
-    """, type="Explaination", icon="📝", color="green")
+- The decorator `add_repr` receives the class `Person` as `cls`.
+- It checks if `__repr__` is already defined. If not, it adds a new `__repr__` method dynamically.
+- When printing `repr(p)`, the newly added method is used.""", type="Explaination", icon="📝", color="green")
 
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     # 2. Registering Classes via Decorator
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("2. Registering Classes: Auto-track Decorated Classes")
-    show_code_with_output('''# Registering Classes via Decorator
+    code2 = '''# Registering Classes via Decorator
 registry = []
 
 def register(cls):
@@ -60,20 +59,20 @@ class PluginA:
 class PluginB:
     pass
 
-print(f"Registered classes: {[cls.__name__ for cls in registry]}")'''
-,
-'''Registered classes: ['PluginA', 'PluginB']''')
+print(f"Registered classes: {[cls.__name__ for cls in registry]}")
+#-------------------------------------------------------------------#'''
+    output2 = run_code_snippet(code2)
+    show_code_with_output(code2, output2)
 
     display_note("""
-    - The `register` decorator appends the decorated class to a global `registry` list.
-    - This pattern is used in plugin systems or when dynamic discovery of classes is needed.
-    """, type="Explaination", icon="📝", color="green")
+- The `register` decorator appends the decorated class to a global `registry` list.
+- This pattern is used in plugin systems or when dynamic discovery of classes is needed.""", type="Explaination", icon="📝", color="green")
 
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     # 3. Enforcing Constraints Using Class Decorators
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("3. Enforcing Class Constraints")
-    show_code_with_output('''# Enforcing Constraints 
+    code3 = '''# Enforcing Constraints 
 def require_method(method_name):
     def decorator(cls):
         if not hasattr(cls, method_name):
@@ -91,22 +90,21 @@ try:
     class Job:
         pass
 except TypeError as e:
-    print(f"Caught error: {e}")'''
-,
-'''Running task
-Caught error: Class Job must implement method 'start' ''')
+    print(f"Caught error: {e}")
+#---------------------------------------------------------------------------------------------#'''
+    output3 = run_code_snippet(code3)
+    show_code_with_output(code3, output3)
 
     display_note("""
-    - Higher-order decorator that takes the name of a required method.
-    - When decorating a class, it checks whether the class has that method.
-    - If missing, it raises an error, enforcing design contracts dynamically.
-    """, type="Explaination", icon="📝", color="green")
+- Higher-order decorator that takes the name of a required method.
+- When decorating a class, it checks whether the class has that method.
+- If missing, it raises an error, enforcing design contracts dynamically.""", type="Explaination", icon="📝", color="green")
 
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     # 4. Class Decorator with Extra Arguments (Stateful Factory)
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("4. Class Decorator with Parameters")
-    show_code_with_output('''# Stateful Factory
+    code4 = '''# Stateful Factory
 def add_prefix(prefix):
     def decorator(cls):
         original_init = cls.__init__
@@ -115,39 +113,41 @@ def add_prefix(prefix):
             original_init(self, name, *args, **kwargs)
         cls.__init__ = __init__
         return cls
+    return decorator
 
 @add_prefix("PRE")
 class User:
     def __init__(self, name):
-        # Note: original init replaced, so this won't be called fully unless forwarded
+        #self.name = name
         pass
 
 u = User("Alice")
-print(u.name)'''
-,
-'''PRE_Alice''')
+print(u.name)
+#---------------------------------------------------------------------------------------#'''
+    output4 = run_code_snippet(code4)
+    show_code_with_output(code4, output4)
 
     display_note("""
-    - This decorator factory `add_prefix` accepts parameters.
-    - It returns a decorator that modifies the `__init__` method to add a prefix to the `name` attribute.
-    """, type="Explaination", icon="📝", color="green")
+- This decorator factory `add_prefix` accepts parameters.
+- It returns a decorator that modifies the `__init__` method to add a prefix to the `name` attribute.""", type="Explaination", icon="📝", color="green")
 
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     # 5. Difference Between Function and Class Decorators
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("5. Function vs Class Decorators (Summary)")
     display_note("""
-    - Function decorators take a function and return a function (usually a wrapper).
-    - Class decorators receive a class and return a class (modified or new).
-    - Both use the `@` syntax but serve different purposes.
-    - Class decorators are powerful for metaprogramming tasks like registration, protocol enforcement, or adding methods.
-    """)
+- Function decorators take a function and return a function (usually a wrapper).
+- Class decorators receive a class and return a class (modified or new).
+- Both use the `@` syntax but serve different purposes.
+- Class decorators are powerful for metaprogramming tasks like registration, protocol enforcement, or adding methods.
+- Function decorators are typically used for logging, access control, memoization, etc.""", type="Explaination", icon="📝", color="green")
 
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     # 6. Bonus: Built-in `@dataclass` as a Class Decorator Example
     # -----------------------------------------------------------------------------------------------------------------------------------------------
     print_sub_heading("6. Built-in Class Decorator: @dataclass")
-    show_code_with_output('''from dataclasses import dataclass
+    code5 = '''
+from dataclasses import dataclass
 
 @dataclass
 class Point:
@@ -156,14 +156,14 @@ class Point:
 
 p = Point(3.5, 4.2)
 print(p)  # __repr__ auto-generated
-print(f"x={p.x}, y={p.y}")''',
-'''Point(x=3.5, y=4.2)
-x=3.5, y=4.2''')
+print(f"x={p.x}, y={p.y}")
+#------------------------------------#'''
+    output5 = run_code_snippet(code5)
+    show_code_with_output(code5, output5)
 
     display_note("""
-    - `@dataclass` automatically generates init, repr, eq, and other methods.
-    - It is a classic real-world example of a class decorator that inspects and modifies the class.
-    """, type="Explaination", icon="📝", color="green")
+- `@dataclass` automatically generates init, repr, eq, and other methods.
+- It is a classic real-world example of a class decorator that inspects and modifies the class.""", type="Explaination", icon="📝", color="green")
 
 if __name__ == "__main__":
-    main()
+    main(1)
